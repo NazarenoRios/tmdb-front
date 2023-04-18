@@ -1,17 +1,21 @@
 import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 import axios from "axios";
+import {fetchApi} from "../config/axiosInstance"
 
-export const sendRegisterRequest = createAsyncThunk(
-  "register",
-  ({ email, password, name, lastname }) => {
-    return axios
-      .post("/api/users/register", {
+export const sendRegisterRequest = createAsyncThunk( "register", async({ email, password, name, lastname }) => {
+
+    const res = await fetchApi({
+      method: 'post',
+      url: "/api/users/register",
+      body: {
         email: email.value,
         password: password.value,
         name: name.value,
         lastname: lastname.value,
-      })
-      .then((res) => res.data);
+        },
+    });
+
+    return res.data;
   }
 );
 
@@ -19,11 +23,15 @@ export const sendLoginRequest = createAsyncThunk(
   "login",
   async ({ email, password }) => {
     try {
-      const { status, data } = await axios.post("/api/users/login", {
-        email: email.value,
-        password: password.value,
+      const { status, data } = await fetchApi({
+        method: 'post',
+        url: '/api/users/login',
+        body: {
+          email: email.value,
+          password: password.value,
+        },
       });
-
+      
       if (status === 201) {
         sessionStorage.setItem("token", data.user.token);
       }
@@ -32,7 +40,10 @@ export const sendLoginRequest = createAsyncThunk(
       // console.log(data.user.token);
       // console.log(data.user.id);
 
-      const res = await axios.get(`/api/users/persistence/${data.user.id}`);
+      const res = await fetchApi({
+        method: 'get',
+        url: `/api/users/persistence/${data.user.id}`,
+      });
 
       return res.data;
       // return { status: 200, message: "Logged successfully!" }
@@ -54,17 +65,24 @@ export const checkLogin = createAsyncThunk("check", async () => {
 
   // console.log(id)
 
-  const { data: data } = await axios.get(`/api/users/persistence/${id}`);
+  const { data: data } = await fetchApi({
+    method: 'get',
+    url: `/api/users/persistence/${id}`
+  });
   // console.log(data)
   return data;
 });
 
 
-export const logOut = createAsyncThunk("LOG_OUT", () => {
+export const logOut = createAsyncThunk("LOG_OUT",async () => {
   sessionStorage.clear();
-  return axios.post("/api/users/logout",{
-    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
-  }).then((res) => res.data);
+  
+  await fetchApi({
+    method: 'post',
+    url: '/api/users/logout',
+  });
+
+  return;
 });
 
 export const updateProfile = createAsyncThunk(
