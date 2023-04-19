@@ -6,6 +6,7 @@ import { MovieBannerRequest } from "../../state/movies";
 import { addToFavorites, Favorites } from "../../state/favorites";
 
 import "./Banner.css";
+import axios from "axios";
 
 function Banner() {
   const get_url = "https://api.themoviedb.org/3";
@@ -14,6 +15,7 @@ function Banner() {
   const [movies, setMovies] = useState([]);
 
   const movie = useSelector((state) => state.movies);
+  const users = useSelector((state) => state.users)
   const dispatch = useDispatch();
 
   function truncate(str, n) {
@@ -22,7 +24,13 @@ function Banner() {
 
   useEffect(() => {
     dispatch(MovieBannerRequest( get_url ));
-    dispatch(Favorites(setMovies));
+    // dispatch(Favorites(setMovies));
+    axios
+    .get(`/api/movies/favorites?userId=${users.id}`)
+    .then((res) => {
+      console.log(res)
+      setMovies(res.data)
+    });
   }, []);
 
   useEffect(() => {
