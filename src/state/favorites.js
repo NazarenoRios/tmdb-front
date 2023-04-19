@@ -33,6 +33,7 @@ export const removeFromFavorites = createAsyncThunk("REMOVE_FAVORITE",(movie, th
 
 export const Favorites = createAsyncThunk("FAVORITES",(setMovies, thunkAPI) => {
   const { users } = thunkAPI.getState();
+  console.log(users)
   if (!users.id) throw new Error("You need to be logged in");
   return axios
     .get(`/api/movies/favorites?userId=${users.id}`)

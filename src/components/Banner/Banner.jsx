@@ -25,9 +25,9 @@ function Banner() {
     dispatch(Favorites(setMovies));
   }, []);
 
-  // useEffect(() => {
-  //   movies.map(favMov => favMov.code === movie.id && setCheckFav(true))
-  // },[movies])
+  useEffect(() => {
+    movies?.map(favMov => favMov.code === movie.id && setCheckFav(true))
+  },[movies])
 
   const addFavorite = (e) => {
     e.preventDefault();
