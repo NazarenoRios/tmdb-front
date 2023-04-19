@@ -37,7 +37,7 @@ export const Favorites = createAsyncThunk("FAVORITES",(setMovies, thunkAPI) => {
   return axios
     .get(`/api/movies/favorites?userId=${users.id}`)
     .then((res) => {
-      console.log(res.data)
+      console.log(res)
       setMovies(res.data)
     });
 }
