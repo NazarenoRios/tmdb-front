@@ -63,7 +63,7 @@ export const checkLogin = createAsyncThunk("check", async () => {
     headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
   });
 
-  // console.log(id)
+  console.log(id)
 
   const { data: data } = await fetchApi({
     method: 'get',
