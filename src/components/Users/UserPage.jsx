@@ -38,7 +38,7 @@ function UserPage() {
       </div>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
-        {movies.map((movie,i) => (
+        {movies?.map((movie,i) => (
           <UserInfoCard movie={movie} key={i}/>
         ))}
       </SimpleGrid>
