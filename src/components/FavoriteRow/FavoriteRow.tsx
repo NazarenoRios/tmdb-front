@@ -56,7 +56,7 @@ function FavoriteRow({ title }) {
             className="flex scrollbar-hide items-center space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2"
             ref={rowRef}
           >
-            {movies.map((movie, i) => (
+            {/* {movies?.map((movie, i) => (
               <div
                 key={i}
                 className="relative h-28 min-w-[180px] md:min-w-[380px] md:min-h-[220px]"
@@ -74,7 +74,7 @@ function FavoriteRow({ title }) {
                   />
                 </Link>
               </div>
-            ))}
+            ))} */}
           </div>
           {/* carousel right button */}
           <ChevronRightIcon

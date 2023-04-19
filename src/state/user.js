@@ -66,7 +66,7 @@ export const checkLogin = createAsyncThunk("check", async () => {
   const data = await fetchApi({
     method: 'get',
     url: "/api/users/me",
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJiQGhvdG1haWwuY29tIiwibmFtZSI6ImIiLCJsYXN0bmFtZSI6ImIiLCJwaWMiOiJodHRwczovL2ljb24tbGlicmFyeS5jb20vaW1hZ2VzL2Fub255bW91cy1hdmF0YXItaWNvbi9hbm9ueW1vdXMtYXZhdGFyLWljb24tMjUuanBnIiwiaWF0IjoxNjgxOTIxMDA2LCJleHAiOjE2ODIwMDc0MDZ9.M_S834HSX_hBeqT4dJZg1EZx0OcFU8q4F_FHKIMRjtg" }
   })
 
   console.log(data)
