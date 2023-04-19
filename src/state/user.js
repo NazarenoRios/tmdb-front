@@ -33,7 +33,7 @@ export const sendLoginRequest = createAsyncThunk(
       });
       
       if (status === 201) {
-        sessionStorage.setItem("token", data.user.token);
+        localStorage.setItem("token", data.user.token);
       }
 
       console.log(status);
@@ -66,7 +66,7 @@ export const checkLogin = createAsyncThunk("check", async () => {
   const data = await fetchApi({
     method: 'get',
     url: "/api/users/me",
-    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
   })
 
   console.log(data)
@@ -81,7 +81,7 @@ export const checkLogin = createAsyncThunk("check", async () => {
 
 
 export const logOut = createAsyncThunk("LOG_OUT",async () => {
-  sessionStorage.clear();
+  localStorage.clear();
   
   await fetchApi({
     method: 'post',
@@ -99,7 +99,7 @@ export const updateProfile = createAsyncThunk(
         name: name.value,
         lastname: lastname.value,
       },{
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => res.data);
   }
@@ -112,7 +112,7 @@ export const updateProfileName = createAsyncThunk(
       .put("/api/users/profile", {
         lastname: lastname.value,
       },{
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => res.data);
   }
@@ -125,7 +125,7 @@ export const updateProfileLastname = createAsyncThunk(
       .put("/api/users/profile", {
         name: name.value,
       },{
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => res.data);
   }
@@ -138,7 +138,7 @@ export const updateProfilePicture = createAsyncThunk(
       .put("/api/users/profile", {
         pic: pic,
       },{
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => res.data);
   }
@@ -151,7 +151,7 @@ export const changePassword = createAsyncThunk(
       .put("/api/users/changePassword", {
         password: password.value,
       },{
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => res.data);
   }
@@ -160,7 +160,7 @@ export const changePassword = createAsyncThunk(
 export const getAllUsers = createAsyncThunk("GET_USERS", (setUsers) => {
   return axios
     .get("/api/users/", {
-      headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     })
     .then((res) => setUsers(res.data));
 });
