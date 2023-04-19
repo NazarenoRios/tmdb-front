@@ -9,4 +9,10 @@ const config = {
 
 export const instance = axios.create(config);
 
-export const fetchApi = ({ method, url, body }) => instance[method](url, body);
+export const fetchApi = ({ method, url, body, headers }) =>
+  instance.request({
+    url,
+    method,
+    headers,
+    data: body,
+  });
