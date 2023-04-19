@@ -57,13 +57,19 @@ export const sendLoginRequest = createAsyncThunk(
 );
 
 export const checkLogin = createAsyncThunk("check", async () => {
-  const {
-    data
-  } = await axios.get("api/users/me", {
-    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
-  });
+  // const {
+  //   data
+  // } = await axios.get("api/users/me", {
+  //   headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+  // });
 
-  console.log(data.id)
+  const data = await fetchApi({
+    method: 'get',
+    url: "/api/users/me",
+    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+  })
+
+  console.log(data)
 
   const { data: data2} = await fetchApi({
     method: 'get',
