@@ -63,20 +63,18 @@ export const checkLogin = createAsyncThunk("check", async () => {
   //   headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
   // });
 
-  const data = await fetchApi({
+  const res = await fetchApi({
     method: 'get',
     url: "/api/users/me",
     headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJiQGhvdG1haWwuY29tIiwibmFtZSI6ImIiLCJsYXN0bmFtZSI6ImIiLCJwaWMiOiJodHRwczovL2ljb24tbGlicmFyeS5jb20vaW1hZ2VzL2Fub255bW91cy1hdmF0YXItaWNvbi9hbm9ueW1vdXMtYXZhdGFyLWljb24tMjUuanBnIiwiaWF0IjoxNjgxOTIxMDA2LCJleHAiOjE2ODIwMDc0MDZ9.M_S834HSX_hBeqT4dJZg1EZx0OcFU8q4F_FHKIMRjtg" }
   })
 
-  console.log(data)
-
-  const { data: data2} = await fetchApi({
+  const { data } = await fetchApi({
     method: 'get',
-    url: `/api/users/persistence/${data.id}`
+    url: `/api/users/persistence/${res.data.id}`
   });
   // console.log(data)
-  return data2;
+  return data;
 });
 
 
