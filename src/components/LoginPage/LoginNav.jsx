@@ -44,7 +44,7 @@ function LoginNav() {
     navigate("/");
   };
 
-  const user = sessionStorage.getItem("token");
+  const user = localStorage.getItem("token");
 
   // console.log(user)
 
