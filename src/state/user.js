@@ -36,9 +36,9 @@ export const sendLoginRequest = createAsyncThunk(
         sessionStorage.setItem("token", data.user.token);
       }
 
-      // console.log(status);
-      // console.log(data.user.token);
-      // console.log(data.user.id);
+      console.log(status);
+      console.log(data.user.token);
+      console.log(data.user.id);
 
       const res = await fetchApi({
         method: 'get',
