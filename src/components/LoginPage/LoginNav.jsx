@@ -31,12 +31,12 @@ function LoginNav() {
   //logout
 
   const navigate = useNavigate();
-  const user = useSelector(state => state.users)
+  // const user = useSelector(state => state.users)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(checkLogin())
-  }, []);
+  // useEffect(() => {
+  //   dispatch(checkLogin())
+  // }, []);
   
   const handleLogout = function () {
     dispatch(logOut())
@@ -44,9 +44,11 @@ function LoginNav() {
     navigate("/");
   };
 
-  console.log(user)
+  const user = sessionStorage.getItem("token");
 
-  if (user.id) {
+  // console.log(user)
+
+  if (user) {
     return (
       <>
         <nav className={`nav ${show && "bg-[#050714]"}`} >
