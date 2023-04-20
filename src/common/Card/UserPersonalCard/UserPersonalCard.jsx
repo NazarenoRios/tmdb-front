@@ -9,9 +9,9 @@ import {
   Image,
 } from "@chakra-ui/react";
 
-export default function UserPersonalCard({ users }) {
+export default function UserPersonalCard({ user }) {
   return (
-    <Link to={`/user/${users.id}`}>
+    <Link to={`/user/${user.id}`}>
       <Center py={20}>
         <Box
           role={"group"}
@@ -38,7 +38,7 @@ export default function UserPersonalCard({ users }) {
               pos: "absolute",
               top: 5,
               left: 0,
-              backgroundImage: `url(${users.pic})`,
+              backgroundImage: `url(${user.pic})`,
               filter: "blur(15px)",
               zIndex: -1,
             }}
@@ -53,7 +53,7 @@ export default function UserPersonalCard({ users }) {
               height={230}
               width={282}
               objectFit={"cover"}
-              src={users.pic}
+              src={user.pic}
             />
           </Box>
           <Stack pt={10} align={"center"}>
@@ -62,7 +62,7 @@ export default function UserPersonalCard({ users }) {
               fontSize={"sm"}
               textTransform={"uppercase"}
             >
-              {users.name} {users.lastname}
+              {user.name} {user.lastname}
             </Text>
             <Heading
               color={"white"}
@@ -70,7 +70,7 @@ export default function UserPersonalCard({ users }) {
               fontFamily={"body"}
               fontWeight={500}
             >
-              {users.email}
+              {user.email}
             </Heading>
             <Stack direction={"row"} align={"center"}>
               <span
@@ -90,7 +90,7 @@ export default function UserPersonalCard({ users }) {
                 letterSpacing: "2px",
               }}
             >
-              {new Date(users.lastActivity).toLocaleDateString()}
+              {new Date(user.lastActivity).toLocaleDateString()}
             </p>
           </Stack>
         </Box>
