@@ -40,7 +40,6 @@ export const sendLoginRequest = createAsyncThunk(
         }, 0);
         setTimeout(() => {
           setLoading(false);
-          navigate("/home");
         }, 6000);
       }
 
