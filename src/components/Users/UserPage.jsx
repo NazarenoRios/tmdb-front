@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { SimpleGrid } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { getUser } from '../../state/updatedUser';
 import UserPersonalCard from "../../common/Card/UserPersonalCard/UserPersonalCard";
 import UserInfoCard from "../../common/Card/UserPersonalCard/UserInfoCard";
 import { UserFavorites } from "../../state/favorites";
+import axios from "axios";
 
 function UserPage() {
 
@@ -21,8 +22,16 @@ function UserPage() {
     dispatch(getUser({id,setUser}))
   },[])
 
+  const users = useSelector((state) => state.users)
+
   useEffect(() => {
-    dispatch(UserFavorites({id,setMovies}));
+    // dispatch(UserFavorites({id,setMovies}));
+    axios
+    .get(`/api/movies/favorites?userId=${users.id}`)
+    .then((res) => {
+      console.log(res)
+      setMovies(res.config.data)
+    });
   }, []);
 
   return (
@@ -38,7 +47,7 @@ function UserPage() {
       </div>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
-        {movies?.map((movie,i) => (
+        {movies && movies.map((movie,i) => (
           <UserInfoCard movie={movie} key={i}/>
         ))}
       </SimpleGrid>

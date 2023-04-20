@@ -16,6 +16,7 @@ import {
   removeFromFavorites,
   Favorites,
 } from "../../state/favorites";
+import axios from "axios";
 
 function MovieDetail() {
   const get_url = "https://api.themoviedb.org/3";
@@ -28,16 +29,23 @@ function MovieDetail() {
   const [checkFav, setCheckFav] = useState(false);
   const [movies, setMovies] = useState([]);
 
+  const users = useSelector((state) => state.users)
   const movie = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(MovieDetailRequest({ get_url, API_KEY, id }));
-    dispatch(Favorites(setMovies));
+    axios
+    .get(`/api/movies/favorites?userId=${users.id}`)
+    .then((res) => {
+      console.log(res)
+      setMovies(res.config.data)
+    });
+    // dispatch(Favorites(setMovies));
   }, []);
 
   useEffect(() => {
-    movies?.map(favMov => favMov.code === movie.id && setCheckFav(true))
+    movies && movies.map(favMov => favMov.code === movie.id && setCheckFav(true))
   },[movies])
 
   const addFavorite = (e) => {
