@@ -1,4 +1,4 @@
-import { Center, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Center, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
@@ -45,7 +45,8 @@ export default function FavPage() {
         justifyContent={"center"}
       >
         <Center>
-          <p className="text-white text-7xl">You don't have any movie or tv show in favorites</p>
+          {/* <p className="text-white text-7xl">You don't have any movie or tv show in favorites</p> */}
+          <Text fontSize={{ base: '24px', md: '40px', lg: '56px' }} className="text-white">You don't have any movie or tv show in favorites</Text>
         </Center>
       </Flex>
     </>
