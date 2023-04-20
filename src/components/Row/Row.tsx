@@ -74,7 +74,7 @@ function Row({ title, fetchUrl }) {
                   }`}
                   alt={movie.name}
                   maxW="380"
-                  maxH="236.38"
+                  maxH="220"
                 />
               </Link>
           </div>
