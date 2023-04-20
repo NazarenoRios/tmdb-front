@@ -36,10 +36,6 @@ export const sendLoginRequest = createAsyncThunk(
         localStorage.setItem("token", data.user.token);
       }
 
-      console.log(status);
-      console.log(data.user.token);
-      console.log(data.user.id);
-
       const res = await fetchApi({
         method: 'get',
         url: `/api/users/persistence/${data.user.id}`,

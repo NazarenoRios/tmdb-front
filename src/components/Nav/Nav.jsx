@@ -17,6 +17,7 @@ import { logOut } from "../../state/user";
 
 import { success } from "../../utils/logs";
 import { getUser } from "../../state/updatedUser";
+import { fetchApi } from "../../config/axiosInstance";
 
 
 function Nav() {
@@ -60,8 +61,19 @@ function Nav() {
 
   //get updated user
 
+  const fetchUser = async () => {
+    const res = await fetchApi({
+      method: "get",
+      url: `/api/users/user/${user.id}`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    setUser(res.data)
+    console.log(res)
+    return res.data
+  };
+
   useEffect(() => {
-    dispatch(getUser({id:user.id,setUser}))
+    fetchUser()
   },[])
 
 

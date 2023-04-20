@@ -10,7 +10,6 @@ export const getUser = createAsyncThunk("GET_USER", ({id,setUser}) => {
 })
 
 export const searchUser = createAsyncThunk("SEARCH_USER", ({name,setUsers}) => {
-    console.log(name)
     return axios.get(`/api/users/search?name=${name}`,{
         headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
       })

@@ -38,11 +38,6 @@ export default function MyProfile() {
 
   const [userUpdated, setUser] = useState({});
 
-  //get updated user (for img)
-  // useEffect(() => {
-  //   dispatch(getUser({ id: user.id, setUser }));
-  // }, []);
-
   const fetchUser = async () => {
     const res = await fetchApi({
       method: "get",
