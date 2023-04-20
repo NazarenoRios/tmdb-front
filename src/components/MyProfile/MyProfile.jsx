@@ -43,16 +43,17 @@ export default function MyProfile() {
   //   dispatch(getUser({ id: user.id, setUser }));
   // }, []);
 
+  const fetchUser = async () => {
+    const res = await fetchApi({
+      method: "get",
+      url: `/api/users/user/${user.id}`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    setUser(res.data)
+    return res.data
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetchApi({
-        method: "get",
-        url: `/api/users/user/${user.id}`,
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-      setUser(res.data)
-      return res.data
-    };
     fetchUser();
   }, []);
 
@@ -60,7 +61,7 @@ export default function MyProfile() {
   const fetchUpdateProfile = async () => {
     const res = await fetchApi({
       method: "put",
-      url: "/api/users/profile",
+      url: `/api/users/profile/${user.id}`,
       body: {
         name: name.value,
         lastname: lastname.value,
@@ -73,7 +74,7 @@ export default function MyProfile() {
   const fetchupdateProfileName = async () => {
     const res = await fetchApi({
       method: "put",
-      url: "/api/users/profile",
+      url: `/api/users/profile/${user.id}`,
       body: { name: name.value },
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
@@ -83,7 +84,7 @@ export default function MyProfile() {
   const fetchupdateProfileLastname = async () => {
     const res = await fetchApi({
       method: "put",
-      url: "/api/users/profile",
+      url: `/api/users/profile/${user.id}`,
       body: { lastname: lastname.value },
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
@@ -93,7 +94,7 @@ export default function MyProfile() {
   const fetchupdateProfilePicture = async () => {
     const res = await fetchApi({
       method: "put",
-      url: "/api/users/profile",
+      url: `/api/users/profile/${user.id}`,
       body: { pic: pic },
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
