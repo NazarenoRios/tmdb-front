@@ -87,7 +87,7 @@ export default function LoginForm() {
       }, 6000);
     }
 
-    if (status === 401) {
+    if (!status) {
       setInvalidAccount("Incorrect email or password, please try again")
     }
 
@@ -206,7 +206,7 @@ export default function LoginForm() {
                   {...password}
                 />
 
-                <Center className="text-red">{invalidAccount}</Center>
+                <Center color='red'>{invalidAccount}</Center>
               </Stack>
               <Button
                 fontFamily={"heading"}
