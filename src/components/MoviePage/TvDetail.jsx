@@ -60,7 +60,7 @@ function TvDetail() {
   const fetchDeleteFavorite = async () => {
     const res = await fetchApi({
       method: "delete",
-      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}&type=tv`,
+      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}&type='tv'`,
     });
     return res.data
   };
