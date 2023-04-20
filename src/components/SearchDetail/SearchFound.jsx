@@ -54,10 +54,10 @@ function SearchFound() {
       </Container>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
-        {series?.map((movie, i) => (
+        {series.map((movie, i) => (
           <CategoryCard movie={movie} key={i} />
         ))}
-        {series2?.map((movie, i) => (
+        {series2.map((movie, i) => (
           <CategoryCard movie={movie} key={i} />
         ))}
         {movies.map((movie, i) => (
