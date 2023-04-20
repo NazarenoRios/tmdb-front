@@ -52,7 +52,6 @@ function TvDetail() {
     const res = await fetchApi({
       method: "put",
       url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}&type='tv'`,
-      body: { code: movie.id, title: movie.title, poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date, type: "tv" }
     });
     return res.data
   };
