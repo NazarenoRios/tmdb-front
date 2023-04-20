@@ -4,8 +4,13 @@ import { useSelector } from "react-redux";
 import UserPersonalCard from "../../common/Card/UserPersonalCard/UserPersonalCard";
 import UserInfoCard from "../../common/Card/UserPersonalCard/UserInfoCard";
 import { fetchApi } from "../../config/axiosInstance";
+import { useLocation } from "react-router-dom";
 
 function UserPage() {
+
+  const params = useLocation();
+
+  console.log(params)
 
   const [movies,setMovies] = useState([]);
 

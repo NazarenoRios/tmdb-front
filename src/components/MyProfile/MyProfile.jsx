@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import aside from "../../assets/background/aside.mp4";
 
 import { useInput } from "../../hooks/useInput";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import {
@@ -26,7 +26,6 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { getUser } from "../../state/updatedUser";
 import { fetchApi } from "../../config/axiosInstance";
 
 export default function MyProfile() {
@@ -34,7 +33,6 @@ export default function MyProfile() {
   const lastname = useInput("lastname");
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.users);
 
