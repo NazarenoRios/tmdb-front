@@ -40,7 +40,7 @@ function FavoriteRow({ title }) {
     });
   }, []);
 
-  if (movies.length > 0) {
+  if (movies) {
     return (
       // title
       <div className="row h-40 space-y-0.5 md:space-y-2 sm:mt-12">
