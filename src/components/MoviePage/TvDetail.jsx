@@ -10,7 +10,7 @@ import playIconBlack from "../../assets/playIcons/play-icon-black.svg";
 import favorites from "../../assets/btnIcons/favorites.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { MovieDetailRequest } from "../../state/movies";
+import { MovieDetailRequest, TvDetailRequest } from "../../state/movies";
 import { fetchApi } from "../../config/axiosInstance";
 
 function TvDetail() {
@@ -39,7 +39,7 @@ function TvDetail() {
   };
 
   useEffect(() => {
-    dispatch(MovieDetailRequest({ get_url, API_KEY, id }));
+    dispatch(TvDetailRequest({ get_url, API_KEY, id }));
     fetchMovieData();
   }, []);
 
