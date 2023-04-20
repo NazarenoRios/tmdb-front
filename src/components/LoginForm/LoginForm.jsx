@@ -64,22 +64,48 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [toggleMute, setToggleMute] = useState(true);
 
-  const changeState = () => {
-    dispatch(sendLoginRequest({ email, password }));
+  const fetchLogin = async () => {
+    const { status, data } = await fetchApi({
+      method: "post",
+      url: "/api/users/login",
+      body: {
+        email: email.value,
+        password: password.value,
+      },
+    });
+
+    if (status === 201) {
+      localStorage.setItem("token", data.user.token);
+    }
+
+    const res = await fetchApi({
+      method: "get",
+      url: `/api/users/persistence/${data.user.id}`,
+    });
+
+    return res.data;
   };
 
-  useEffect(() => {
-    if (user.id) {
+  const changeState = async () => {
+    const login = await fetchLogin();
+    const token = await localStorage.getItem("token");
+
+    if (token) {
       setLoading(true);
       setTimeout(() => {
         setToggleMute(!toggleMute);
       }, 0);
       setTimeout(() => {
         setLoading(false);
-        navigate("/home");
       }, 6000);
     }
-  }, [user]);
+
+    const goHome = await navigate("/home");
+  };
+
+  // useEffect(() => {
+  //   if (user.id) navigate("/home");
+  // }, []);
 
   if (loading) {
     return (

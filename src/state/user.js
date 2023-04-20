@@ -42,7 +42,6 @@ export const sendLoginRequest = createAsyncThunk(
       });
 
       return res.data;
-      // return { status: 200, message: "Logged successfully!" }
     } catch (err) {
       return {
         status: err.response.status,
