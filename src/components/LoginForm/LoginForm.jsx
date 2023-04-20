@@ -125,21 +125,21 @@ export default function LoginForm() {
   //   }, 6000);
   // };
 
-  // useEffect(() => {
-  //   if (user.id) navigate("/home");
-  // }, [user]);
+  useEffect(() => {
+    if (user.id) navigate("/home");
+  }, []);
 
   const handleKeyDown1 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      
+      fetchLogin()
     }
   };
 
   const handleKeyDown2 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      
+      fetchLogin()
     }
   };
 
