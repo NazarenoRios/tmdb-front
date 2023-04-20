@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PlusIcon, CheckIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { MovieBannerRequest } from "../../state/movies";
-import { addToFavorites, Favorites } from "../../state/favorites";
+import { addToFavorites } from "../../state/favorites";
 
 import "./Banner.css";
 import { fetchApi } from "../../config/axiosInstance";
@@ -21,18 +21,6 @@ function Banner() {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
-
-  // useEffect(() => {
-  //   dispatch(MovieBannerRequest( get_url ));
-  //   // dispatch(Favorites(setMovies));
-  //   fetchApi
-  //   axios
-  //   .get(`/api/movies/favorites?userId=${users.id}`)
-  //   .then((res) => {
-  //     console.log(res)
-  //     setMovies(res.config.data)
-  //   });
-  // }, []);
 
   useEffect(() => {
     dispatch(MovieBannerRequest(get_url));

@@ -1,6 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
 import Card from "../../common/Card/Card";
 import { fetchApi } from "../../config/axiosInstance";
