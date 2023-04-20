@@ -11,16 +11,16 @@ import axios from "axios";
 function UserPage() {
 
   const params = useParams()
-  const id = JSON.stringify(parseInt(params.id));
+  // const id = JSON.stringify(parseInt(params.id));
 
-  const [user,setUser] = useState({});
+  // const [user,setUser] = useState({});
   const [movies,setMovies] = useState([]);
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getUser({id,setUser}))
-  },[])
+  // useEffect(() => {
+  //   dispatch(getUser({id,setUser}))
+  // },[])
 
   const users = useSelector((state) => state.users)
 
@@ -34,14 +34,15 @@ function UserPage() {
     });
   }, []);
 
-  console.log(movies)
+  console.log("users",users)
+  console.log("MOVIES",movies)
 
   return (
     <>
-      <UserPersonalCard user={user}/>
+      <UserPersonalCard user={users}/>
 
       <div className="flex justify-center mb-2">
-        <h1 style={{fontSize:"30px"}}>{user.name}</h1>
+        <h1 style={{fontSize:"30px"}}>{users.name}</h1>
       </div>
 
       <div className="flex justify-center">
