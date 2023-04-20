@@ -155,12 +155,18 @@ export const changePassword = createAsyncThunk(
   }
 );
 
-export const getAllUsers = createAsyncThunk("GET_USERS", (setUsers) => {
-  return axios
-    .get("/api/users/", {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    })
-    .then((res) => setUsers(res.data));
+export const getAllUsers = createAsyncThunk("GET_USERS", async (setUsers) => {
+  const res = await fetchApi({
+    method: 'get',
+    url: "/api/users/",
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
+  });
+
+  console.log(res)
+  
+  await setUsers(res.data)
+
+  return res.data
 });
 
 const usersReducer = createReducer(
