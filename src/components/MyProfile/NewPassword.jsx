@@ -5,7 +5,7 @@ import { ExclamationCircleIcon } from "@heroicons/react/solid";
 
 import { useInput } from "../../hooks/useInput";
 import { changePassword, logOut } from "../../state/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/react';
 
 import "./Btns2.css"
+import { fetchApi } from "../../config/axiosInstance";
 
 
 export default function NewPassword() {
@@ -31,10 +32,23 @@ export default function NewPassword() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.users);
+
   //same password message
   const [message, setMessage] = useState(false);
 
   const toggleMessage = () => setMessage(true);
+
+  //change PW
+  const fetchChangePw = async () => {
+    const res = await fetchApi({
+      method: "put",
+      url: `/api/users/changePassword/${user.id}`,
+      body: { password: password.value },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.data;
+  };
 
   //submit
   const submitHandler = (e) => {
@@ -42,7 +56,7 @@ export default function NewPassword() {
 
     if (password.value.length > 0) {
       if (password.value === confirmPassword.value) {
-        dispatch(changePassword({ password }));
+        fetchChangePw();
         dispatch(logOut());
         navigate("/");
       }
