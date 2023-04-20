@@ -7,6 +7,7 @@ import { addToFavorites, Favorites } from "../../state/favorites";
 
 import "./Banner.css";
 import axios from "axios";
+import { fetchApi } from "../../config/axiosInstance";
 
 function Banner() {
   const get_url = "https://api.themoviedb.org/3";
@@ -22,15 +23,33 @@ function Banner() {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
-  useEffect(() => {
-    dispatch(MovieBannerRequest( get_url ));
-    // dispatch(Favorites(setMovies));
-    axios
-    .get(`/api/movies/favorites?userId=${users.id}`)
-    .then((res) => {
-      console.log(res)
-      setMovies(res.config.data)
-    });
+  // useEffect(() => {
+  //   dispatch(MovieBannerRequest( get_url ));
+  //   // dispatch(Favorites(setMovies));
+  //   fetchApi
+  //   axios
+  //   .get(`/api/movies/favorites?userId=${users.id}`)
+  //   .then((res) => {
+  //     console.log(res)
+  //     setMovies(res.config.data)
+  //   });
+  // }, []);
+
+  useEffect( () => {
+    const fetchData = async () => {
+
+      const res = await fetchApi({
+      method: 'get',
+      url: `/api/movies/favorites?userId=${users.id}`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
+    })
+  
+    setMovies(res.data)
+
+    console.log("AAAAAAAAaa",res)
+  };
+
+  fetchData()
   }, []);
 
   useEffect(() => {

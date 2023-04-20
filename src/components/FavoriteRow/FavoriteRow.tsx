@@ -39,6 +39,7 @@ function FavoriteRow({ title }) {
       setMovies(res.config.data)
     });
   }, []);
+  
 
   if (movies) {
     return (
