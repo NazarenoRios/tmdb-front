@@ -1,17 +1,24 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Favorites } from "../../state/favorites";
 import Nav from "../Nav/Nav";
 import Card from "../../common/Card/Card";
+import axios from "axios";
 
 export default function FavPage() {
 
   const [movies, setMovies] = useState([]);
-  const dispatch = useDispatch();
+
+  const users = useSelector((state) => state.users)
 
   useEffect(() => {
-    dispatch(Favorites(setMovies));
+    axios
+    .get(`/api/movies/favorites?userId=${users.id}`)
+    .then((res) => {
+      console.log(res)
+      setMovies(res.config.data)
+    });
   }, []);
 
   if (movies.length !== 0) {
