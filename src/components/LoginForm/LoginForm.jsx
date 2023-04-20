@@ -53,11 +53,7 @@ export default function LoginForm() {
     });
 
     const goHome = await navigate("/home")
-
     return res.data;
-
-    
-
   };
 
   const sucessGoogleResponse = (tokenResponse) => {

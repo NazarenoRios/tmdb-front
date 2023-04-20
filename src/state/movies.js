@@ -38,6 +38,22 @@ export const MovieSetSearch2 = createAsyncThunk("MOVIE_SET_SEARCH2", ({get_url, 
         })
 })
 
+export const SerieSetSearch = createAsyncThunk("MOVIE_SET_SEARCH", ({get_url, API_KEY, search, setSeries}) => {
+    return axios.get(`${get_url}/search/tv${API_KEY}&query=${search.value}&page=1`)
+        .then(res => {
+            setSeries(res.data.results)
+            search.onChange({ target: { value: "" } });
+        })
+})
+
+export const SerieSetSearch2 = createAsyncThunk("MOVIE_SET_SEARCH", ({get_url, API_KEY, search, setSeries2}) => {
+    return axios.get(`${get_url}/search/tv${API_KEY}&query=${search.value}&page=1`)
+        .then(res => {
+            setSeries2(res.data.results)
+            search.onChange({ target: { value: "" } });
+        })
+})
+
 
 const moviesReducer = createReducer(
     {},
@@ -48,6 +64,8 @@ const moviesReducer = createReducer(
         [MovieSearchRequest2.fulfilled]: (state,action) => action.payload,
         [MovieSetSearch.fulfilled]: (state,action) => action.payload,
         [MovieSetSearch2.fulfilled]: (state,action) => action.payload,
+        [SerieSetSearch.fulfilled]: (state,action) => action.payload,
+        [SerieSetSearch2.fulfilled]: (state,action) => action.payload
     }
 )
 

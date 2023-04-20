@@ -4,12 +4,14 @@ import CategoryCard from "../../common/Card/CategoryCard";
 import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
-import { MovieSearchRequest, MovieSearchRequest2, MovieSetSearch, MovieSetSearch2 } from "../../state/movies";
+import { MovieSearchRequest, MovieSearchRequest2, MovieSetSearch, MovieSetSearch2, SerieSetSearch, SerieSetSearch2 } from "../../state/movies";
 
 function SearchFound() {
   
   const [movies, setMovies] = useState([]);
   const [movies2, setMovies2] = useState([]);
+  const [series,setSeries] = useState([]);
+  const [series2,setSeries2] = useState([]);
 
   const get_url = "https://api.themoviedb.org/3";
   const API_KEY = "?api_key=a9891d14d2e4598d55823b3ec706cfb0";
@@ -29,20 +31,12 @@ function SearchFound() {
     dispatch(MovieSetSearch2({get_url, API_KEY, search, setMovies2}))
   }
  }
-
-// const [value, setValue] = useState("");
-
-// const handleSearch = (e) => {
-//   e.preventDefault();
-//   setValue(e.target.value)
-//   dispatch(MovieSetSearch({get_url, API_KEY, search : value, setMovies}))
-//   dispatch(MovieSetSearch2({get_url, API_KEY, search : value, setMovies2}))
-//  }
-
   //SearchFound
   useEffect(() => {
     dispatch(MovieSearchRequest({get_url, setMovies}))
     dispatch(MovieSearchRequest2({get_url, setMovies2}))
+    dispatch(SerieSetSearch({get_url, setSeries}))
+    dispatch(SerieSetSearch2({get_url, setSeries2}))
   },[])
 
   return (
@@ -60,6 +54,12 @@ function SearchFound() {
       </Container>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
+        {series?.map((movie, i) => (
+          <CategoryCard movie={movie} key={i} />
+        ))}
+        {series2?.map((movie, i) => (
+          <CategoryCard movie={movie} key={i} />
+        ))}
         {movies.map((movie, i) => (
           <CategoryCard movie={movie} key={i} />
         ))}
