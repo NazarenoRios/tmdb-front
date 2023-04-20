@@ -43,6 +43,8 @@ export default function LoginForm() {
       body: { credential: tokenResponse.credential },
     });
 
+    console.log(data)
+
     if (status === 201) {
       localStorage.setItem("token", data.user.token);
     }
