@@ -37,13 +37,13 @@ export default function LoginForm() {
   const user = useSelector(state => state.users)
 
   const fetchGoogleLogin = async (tokenResponse) => {
-    const { status, data } = await fetchApi({
+    const resGogole = await fetchApi({
       method: "put",
       url: "/api/users/googlelogin",
       body: { credential: tokenResponse.credential },
     });
 
-    console.log(data)
+    console.log(resGogole)
 
     if (status === 201) {
       localStorage.setItem("token", data.user.token);
