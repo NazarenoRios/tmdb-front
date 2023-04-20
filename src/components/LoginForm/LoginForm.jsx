@@ -45,18 +45,18 @@ export default function LoginForm() {
 
     console.log(resGogole)
 
-    if (status === 201) {
-      localStorage.setItem("token", data.user.token);
-    }
+    // if (status === 201) {
+    //   localStorage.setItem("token", data.user.token);
+    // }
 
-    const res = await fetchApi({
-      method: 'get',
-      url: `/api/users/persistence/${data.user.id}`,
-    });
+    // const res = await fetchApi({
+    //   method: 'get',
+    //   url: `/api/users/persistence/${data.user.id}`,
+    // });
 
-    const goHome = await navigate("/home")
+    // const goHome = await navigate("/home")
 
-    return res.data;
+    return resGogole;
 
   };
 
