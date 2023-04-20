@@ -30,21 +30,42 @@ import {
 export default function LoginForm() {
   const email = useInput("email");
   const password = useInput("password");
-  const [invalidAccount,setInvalidAccount] = useState("")
+  const [invalidAccount, setInvalidAccount] = useState("");
 
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
 
+  // activate video in login
+  const [loading, setLoading] = useState(false);
+  const [toggleMute, setToggleMute] = useState(true);
+
+  const videoLogin = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setToggleMute(!toggleMute);
+    }, 0);
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/home");
+    }, 6000);
+  };
+
+  // google login
   const fetchGoogleLogin = async (tokenResponse) => {
     const { status, data } = await fetchApi({
       method: "put",
       url: "/api/users/googlelogin",
       body: { credential: tokenResponse.credential },
+    }).catch(err => {
+      if (err.response.status === 401) {
+        setInvalidAccount("Incorrect email or password, please try again");
+      }
     })
 
     if (status === 201) {
       localStorage.setItem("token", data.token);
+      videoLogin();
     }
 
     const res = await fetchApi({
@@ -55,50 +76,43 @@ export default function LoginForm() {
     const goHome = await navigate("/home");
 
     return res.data;
-  }
+  };
 
   const sucessGoogleResponse = (tokenResponse) => {
     fetchGoogleLogin(tokenResponse);
   };
 
-  // login with video
-  const [loading, setLoading] = useState(false);
-  const [toggleMute, setToggleMute] = useState(true);
-
+  // login with db Acc
   const fetchLogin = async () => {
     const { status, data } = await fetchApi({
-      method: 'post',
-      url: '/api/users/login',
+      method: "post",
+      url: "/api/users/login",
       body: {
         email: email.value,
         password: password.value,
       },
-    }).catch(err => console.log("ASDASDSAD",err))
-    
+    }).catch((err) => {
+      if (err.response.status === 401) {
+        setInvalidAccount("Incorrect email or password, please try again");
+      }
+    });
+
     if (status === 201) {
       localStorage.setItem("token", data.user.token);
-      setLoading(true);
-      setTimeout(() => {
-        setToggleMute(!toggleMute);
-      }, 0);
-      setTimeout(() => {
-        setLoading(false);
-        navigate("/home");
-      }, 6000);
+      videoLogin();
     }
 
     const res = await fetchApi({
-      method: 'get',
+      method: "get",
       url: `/api/users/persistence/${data.user.id}`,
     });
 
     return res.data;
-  }
+  };
 
   const changeState = (e) => {
-    e.preventDefault()
-    fetchLogin()
-    setInvalidAccount("Incorrect email or password, please try again")
+    e.preventDefault();
+    fetchLogin();
   };
 
   useEffect(() => {
@@ -108,16 +122,14 @@ export default function LoginForm() {
   const handleKeyDown1 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      fetchLogin()
-      setInvalidAccount("Incorrect email or password, please try again")
+      fetchLogin();
     }
   };
 
   const handleKeyDown2 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      fetchLogin()
-      setInvalidAccount("Incorrect email or password, please try again")
+      fetchLogin();
     }
   };
 
@@ -205,7 +217,7 @@ export default function LoginForm() {
                   {...password}
                 />
 
-                <Center color='red'>{invalidAccount}</Center>
+                <Center color="red">{invalidAccount}</Center>
               </Stack>
               <Button
                 fontFamily={"heading"}
