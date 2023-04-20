@@ -180,7 +180,6 @@ export default function LoginForm() {
                 />
               </Stack>
               <Button
-                type="submit"
                 fontFamily={"heading"}
                 mt={8}
                 w={"full"}
