@@ -65,6 +65,28 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [toggleMute, setToggleMute] = useState(true);
 
+  const fetchLogin = async () => {
+    const { status, data } = await fetchApi({
+      method: 'post',
+      url: '/api/users/login',
+      body: {
+        email: email.value,
+        password: password.value,
+      },
+    });
+    
+    if (status === 201) {
+      localStorage.setItem("token", data.user.token);
+    }
+
+    const res = await fetchApi({
+      method: 'get',
+      url: `/api/users/persistence/${data.user.id}`,
+    });
+
+    return res.data;
+  }
+
   const changeState = () => {
     dispatch(sendLoginRequest({ email, password }));
   };
@@ -96,6 +118,15 @@ export default function LoginForm() {
   // useEffect(() => {
   //   if (user.id) navigate("/home");
   // }, [user]);
+
+  const [key, setKey] = React.useState('');
+  const inputRef = React.useRef();
+
+  const handleKeyDown = () => {
+    setKey(inputRef.current.value);
+  };
+
+  console.log(key)
 
   if (loading) {
     return (
@@ -161,6 +192,7 @@ export default function LoginForm() {
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
+                  onKeyDown={handleKeyDown}
                   _placeholder={{
                     color: "gray.500",
                   }}
@@ -173,6 +205,7 @@ export default function LoginForm() {
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
+                  onKeyDown={handleKeyDown}
                   _placeholder={{
                     color: "gray.500",
                   }}
