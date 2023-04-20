@@ -162,9 +162,9 @@ export const getAllUsers = createAsyncThunk("GET_USERS", async (setUsers) => {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
   });
 
-  console.log(res)
+  console.log(res.data)
   
-  await setUsers(res.data)
+  setUsers(res.data)
 
   return res.data
 });

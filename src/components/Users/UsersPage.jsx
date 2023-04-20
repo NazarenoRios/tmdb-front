@@ -6,6 +6,7 @@ import { useInput } from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "../../state/user";
 import { searchUser } from "../../state/updatedUser";
+import { fetchApi } from "../../config/axiosInstance";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -27,8 +28,19 @@ function Users() {
   };
 
   //Users
-  useEffect(() => {
-    dispatch(getAllUsers(setUsers));
+  useEffect( () => {
+    const fetchData = async () => {
+
+      const res = await fetchApi({
+      method: 'get',
+      url: "/api/users/",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
+    })
+  
+    setUsers(res.data)
+  };
+
+  fetchData()
   }, []);
 
   return (
