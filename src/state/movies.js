@@ -47,7 +47,7 @@ export const SerieSetSearch = createAsyncThunk("MOVIE_SET_SEARCH", ({get_url, AP
 })
 
 export const SerieSetSearch2 = createAsyncThunk("MOVIE_SET_SEARCH", ({get_url, API_KEY, search, setSeries2}) => {
-    return axios.get(`${get_url}/search/tv${API_KEY}&query=${search.value}&page=1`)
+    return axios.get(`${get_url}/search/tv${API_KEY}&query=${search.value}&page=2`)
         .then(res => {
             setSeries2(res.data.results)
             search.onChange({ target: { value: "" } });
