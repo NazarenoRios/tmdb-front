@@ -4,8 +4,9 @@ import { Image } from "@chakra-ui/react";
 import "./Row.css";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Favorites } from "../../state/favorites";
+import axios from "axios";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -28,9 +29,15 @@ function FavoriteRow({ title }) {
 
   const [movies, setMovies] = useState([]);
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.users)
 
   useEffect(() => {
-    dispatch(Favorites(setMovies));
+    axios
+    .get(`/api/movies/favorites?userId=${users.id}`)
+    .then((res) => {
+      console.log(res)
+      setMovies(res.config.data)
+    });
   }, []);
 
   if (movies.length > 0) {
