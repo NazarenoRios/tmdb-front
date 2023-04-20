@@ -27,7 +27,6 @@ function FavoriteRow({ title }) {
   };
 
   const [movies, setMovies] = useState([]);
-  const dispatch = useDispatch();
   const users = useSelector((state) => state.users)
 
   useEffect(() => {
@@ -42,9 +41,6 @@ function FavoriteRow({ title }) {
     };
     fetchMovieData();
   }, []);
-
-  console.log(movies)
-  
 
   if (movies) {
     return (

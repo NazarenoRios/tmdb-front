@@ -34,7 +34,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector(state => state.users)
+  const user = useSelector((state) => state.users);
 
   const fetchGoogleLogin = async (tokenResponse) => {
     const { status, data } = await fetchApi({
@@ -48,38 +48,51 @@ export default function LoginForm() {
     }
 
     const res = await fetchApi({
-      method: 'get',
+      method: "get",
       url: `/api/users/persistence/${data.id}`,
     });
 
-    const goHome = await navigate("/home")
+    const goHome = await navigate("/home");
     return res.data;
   };
 
   const sucessGoogleResponse = (tokenResponse) => {
-    fetchGoogleLogin(tokenResponse)
+    fetchGoogleLogin(tokenResponse);
   };
 
   // login with video
   const [loading, setLoading] = useState(false);
   const [toggleMute, setToggleMute] = useState(true);
-  const [navState, setNavState] = useState(true);
 
-  const changeState = () => {
-    setLoading(true);
-    setNavState(false);
-    setTimeout(() => {
-      setToggleMute(!toggleMute);
-    }, 0);
-    setTimeout(() => {
-      dispatch(sendLoginRequest({ email, password }));
-      setLoading(false);
-    }, 6000);
+  const changeState = async () => {
+    const { status, data } = await fetchApi({
+      method: "post",
+      url: "/api/users/login",
+      body: {
+        email: email.value,
+        password: password.value,
+      },
+    });
+
+    if (status === 201) {
+      localStorage.setItem("token", data.user.token);
+      setLoading(true);
+      setTimeout(() => {
+        setToggleMute(!toggleMute);
+      }, 0);
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/home");
+      }, 6000);
+    }
+
+    const res = await fetchApi({
+      method: "get",
+      url: `/api/users/persistence/${data.user.id}`,
+    });
+
+    return res.data;
   };
-
-  useEffect(() => {
-    if (user.id) navigate("/home");
-  }, [user]);
 
   if (loading) {
     return (
