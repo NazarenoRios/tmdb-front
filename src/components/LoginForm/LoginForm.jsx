@@ -120,10 +120,15 @@ export default function LoginForm() {
   // }, [user]);
 
   const [key, setKey] = React.useState('');
-  const inputRef = React.useRef();
+  const inputRef1 = React.useRef();
+  const inputRef2 = React.useRef();
 
-  const handleKeyDown = () => {
-    setKey(inputRef.current.value);
+  const handleKeyDown1 = () => {
+    setKey(inputRef1.current.value);
+  };
+
+  const handleKeyDown2 = () => {
+    setKey(inputRef2.current.value);
   };
 
   console.log(key)
@@ -192,7 +197,8 @@ export default function LoginForm() {
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
-                  onKeyDown={handleKeyDown}
+                  ref={inputRef1}
+                  onKeyDown={handleKeyDown1}
                   _placeholder={{
                     color: "gray.500",
                   }}
@@ -205,7 +211,8 @@ export default function LoginForm() {
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
-                  onKeyDown={handleKeyDown}
+                  ref={inputRef2}
+                  onKeyDown={handleKeyDown2}
                   _placeholder={{
                     color: "gray.500",
                   }}
