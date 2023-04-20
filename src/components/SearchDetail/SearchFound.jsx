@@ -29,14 +29,14 @@ function SearchFound() {
     e.preventDefault();
     dispatch(MovieSetSearch({get_url, API_KEY, search, setMovies}))
     dispatch(MovieSetSearch2({get_url, API_KEY, search, setMovies2}))
+    dispatch(SerieSetSearch({get_url, setSeries}))
+    dispatch(SerieSetSearch2({get_url, setSeries2}))
   }
  }
   //SearchFound
   useEffect(() => {
     dispatch(MovieSearchRequest({get_url, setMovies}))
     dispatch(MovieSearchRequest2({get_url, setMovies2}))
-    dispatch(SerieSetSearch({get_url, setSeries}))
-    dispatch(SerieSetSearch2({get_url, setSeries2}))
   },[])
 
   return (
@@ -54,10 +54,10 @@ function SearchFound() {
       </Container>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
-        {series.map((movie, i) => (
+        {series?.map((movie, i) => (
           <CategoryCard movie={movie} key={i} />
         ))}
-        {series2.map((movie, i) => (
+        {series2?.map((movie, i) => (
           <CategoryCard movie={movie} key={i} />
         ))}
         {movies.map((movie, i) => (
