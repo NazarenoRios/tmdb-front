@@ -39,7 +39,7 @@ function UserPage() {
 
   return (
     <>
-      <UserPersonalCard user={users}/>
+      {/* <UserPersonalCard user={users}/> */}
 
       <div className="flex justify-center mb-2">
         <h1 style={{fontSize:"30px"}}>{users.name}</h1>
@@ -49,11 +49,11 @@ function UserPage() {
         <h2 style={{fontSize:"30px"}}>Favorite List</h2>
       </div>
 
-      <SimpleGrid minChildWidth="300px" spacing="30px">
-        {/* {movies ? (movies.map((movie,i) => (
+      {/* <SimpleGrid minChildWidth="300px" spacing="30px">
+        {movies ? (movies.map((movie,i) => (
           <UserInfoCard movie={movie} key={i}/>
-        ))) : ("")} */}
-      </SimpleGrid>
+        ))) : ("")}
+      </SimpleGrid> */}
     </>
   );
 }
