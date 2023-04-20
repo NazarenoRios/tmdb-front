@@ -41,7 +41,7 @@ export default function LoginForm() {
       method: "put",
       url: "/api/users/googlelogin",
       body: { credential: tokenResponse.credential },
-    });
+    }).catch(err => console.log("ASDASDSAD",err))
 
     if (status === 201) {
       localStorage.setItem("token", data.token);
@@ -55,7 +55,7 @@ export default function LoginForm() {
     const goHome = await navigate("/home");
 
     return res.data;
-  };
+  }
 
   const sucessGoogleResponse = (tokenResponse) => {
     fetchGoogleLogin(tokenResponse);
