@@ -29,7 +29,7 @@ function Banner() {
     .get(`/api/movies/favorites?userId=${users.id}`)
     .then((res) => {
       console.log(res)
-      setMovies(res.data)
+      setMovies(res.config.data)
     });
   }, []);
 
