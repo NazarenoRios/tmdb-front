@@ -1,15 +1,14 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { Center, Flex, SimpleGrid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
 import Card from "../../common/Card/Card";
 import { fetchApi } from "../../config/axiosInstance";
 
 export default function FavPage() {
-
   const [movies, setMovies] = useState([]);
 
-  const users = useSelector((state) => state.users)
+  const users = useSelector((state) => state.users);
 
   useEffect(() => {
     const fetchMovieData = async () => {
@@ -39,7 +38,16 @@ export default function FavPage() {
 
   return (
     <>
-      <p className="text-red-600">404 Not Found</p>
+      <Flex
+        width={"100vw"}
+        height={"100vh"}
+        alignContent={"center"}
+        justifyContent={"center"}
+      >
+        <Center>
+          <p className="text-white text-7xl">You don't have any movie or tv show in favorites</p>
+        </Center>
+      </Flex>
     </>
   );
 }
