@@ -8,6 +8,7 @@ import { addToFavorites, Favorites } from "../../state/favorites";
 import "./Banner.css";
 import axios from "axios";
 import { fetchApi } from "../../config/axiosInstance";
+import requests from "../../utils/requests";
 
 function Banner() {
   const get_url = "https://api.themoviedb.org/3";
@@ -36,20 +37,28 @@ function Banner() {
   // }, []);
 
   useEffect( () => {
-    const fetchData = async () => {
 
+    const fetchBannerData = async () => {
+      const res = await fetchApi({
+      method: 'get',
+      url: `${get_url}${requests.fetchAnimation}`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
+    })
+
+    return res.data.results[Math.floor(Math.random() * res.data.results.length)]
+  };
+
+    const fetchMovieData = async () => {
       const res = await fetchApi({
       method: 'get',
       url: `/api/movies/favorites?userId=${users.id}`,
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
     })
-  
+
     setMovies(res.data)
-
-    console.log("AAAAAAAAaa",res)
   };
-
-  fetchData()
+  fetchBannerData()
+  fetchMovieData()
   }, []);
 
   useEffect(() => {
