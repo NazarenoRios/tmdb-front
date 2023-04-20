@@ -77,6 +77,14 @@ export default function LoginForm() {
     
     if (status === 201) {
       localStorage.setItem("token", data.user.token);
+      setLoading(true);
+      setTimeout(() => {
+        setToggleMute(!toggleMute);
+      }, 0);
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/home");
+      }, 6000);
     }
 
     const res = await fetchApi({
@@ -87,22 +95,24 @@ export default function LoginForm() {
     return res.data;
   }
 
-  const changeState = () => {
-    dispatch(sendLoginRequest({ email, password }));
+  const changeState = (e) => {
+    e.preventDefault()
+    // dispatch(sendLoginRequest({ email, password }));
+    fetchLogin()
   };
 
-  useEffect(() => {
-    if (user.id) {
-      setLoading(true);
-      setTimeout(() => {
-        setToggleMute(!toggleMute);
-      }, 0);
-      setTimeout(() => {
-        setLoading(false);
-        navigate("/home");
-      }, 6000);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user.id) {
+  //     setLoading(true);
+  //     setTimeout(() => {
+  //       setToggleMute(!toggleMute);
+  //     }, 0);
+  //     setTimeout(() => {
+  //       setLoading(false);
+  //       navigate("/home");
+  //     }, 6000);
+  //   }
+  // }, [user]);
 
   // const changeState = () => {
   //   setLoading(true);
@@ -120,11 +130,17 @@ export default function LoginForm() {
   // }, [user]);
 
   const handleKeyDown1 = (e) => {
-    console.log(e.key)
+    if (e.key === "Enter") {
+      e.preventDefault();
+      
+    }
   };
 
   const handleKeyDown2 = (e) => {
-    console.log(e.key)
+    if (e.key === "Enter") {
+      e.preventDefault();
+      
+    }
   };
 
   if (loading) {
@@ -217,7 +233,7 @@ export default function LoginForm() {
                 w={"full"}
                 bgGradient="linear(to-r, blue.400,pink.400)"
                 color={"white"}
-                onClick={() => changeState()}
+                onClick={(e) => changeState(e)}
                 _hover={{
                   bgGradient: "linear(to-r, red.400,pink.400)",
                   boxShadow: "xl",
