@@ -24,26 +24,26 @@ function UserPage() {
 
   const users = useSelector((state) => state.users)
 
-  useEffect(() => {
-    // dispatch(UserFavorites({id,setMovies}));
-    axios
-    .get(`/api/movies/favorites?userId=${users.id}`)
-    .then((res) => {
-      console.log(res)
-      setMovies(res.config.data)
-    });
-  }, []);
+  // useEffect(() => {
+  //   // dispatch(UserFavorites({id,setMovies}));
+  //   axios
+  //   .get(`/api/movies/favorites?userId=${users.id}`)
+  //   .then((res) => {
+  //     console.log(res)
+  //     setMovies(res.config.data)
+  //   });
+  // }, []);
 
   console.log("users",users)
-  console.log("MOVIES",movies)
+  // console.log("MOVIES",movies)
 
   return (
     <>
       {/* <UserPersonalCard user={users}/> */}
 
-      <div className="flex justify-center mb-2">
+      {/* <div className="flex justify-center mb-2">
         <h1 style={{fontSize:"30px"}}>{users.name}</h1>
-      </div>
+      </div> */}
 
       <div className="flex justify-center">
         <h2 style={{fontSize:"30px"}}>Favorite List</h2>
