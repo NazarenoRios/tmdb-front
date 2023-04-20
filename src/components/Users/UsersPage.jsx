@@ -3,9 +3,6 @@ import { SimpleGrid } from "@chakra-ui/react";
 import UserCard from "../../common/Card/UserCard";
 import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { getAllUsers } from "../../state/user";
-import { searchUser } from "../../state/updatedUser";
 import { fetchApi } from "../../config/axiosInstance";
 
 function Users() {
@@ -13,34 +10,44 @@ function Users() {
   const [placeholder, setPlaceholder] = useState("Search Users...");
 
   const search = useInput();
-  const dispatch = useDispatch();
 
   //input
   const togglePlaceholder = function () {
     setPlaceholder("");
   };
 
+  //search users
+  const fetchSearch = async () => {
+    const res = await fetchApi({
+      method: "get",
+      url: `/api/users/search?name=${search.value}`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    setUsers(res.data);
+    return res.data;
+  };
+
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      dispatch(searchUser({ name: search.value, setUsers }));
+      fetchSearch();
     }
   };
 
   //Users
-  useEffect( () => {
+  useEffect(() => {
     const fetchData = async () => {
-
       const res = await fetchApi({
-      method: 'get',
-      url: "/api/users/",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
-    })
-  
-    setUsers(res.data)
-  };
+        method: "get",
+        url: "/api/users/",
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
 
-  fetchData()
+      setUsers(res.data);
+    };
+
+    fetchData();
   }, []);
 
   return (
