@@ -68,7 +68,6 @@ function Nav() {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     setUser(res.data)
-    console.log(res)
     return res.data
   };
 
