@@ -51,8 +51,8 @@ function TvDetail() {
   const fetchAddFavorite = async () => {
     const res = await fetchApi({
       method: "put",
-      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}`,
-      body: { code: movie.id, title: movie.title, poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date }
+      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}&type='tv'`,
+      body: { code: movie.id, title: movie.title, poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date, type: "tv" }
     });
     return res.data
   };
@@ -60,7 +60,7 @@ function TvDetail() {
   const fetchDeleteFavorite = async () => {
     const res = await fetchApi({
       method: "delete",
-      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}`,
+      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}&type=tv`,
     });
     return res.data
   };

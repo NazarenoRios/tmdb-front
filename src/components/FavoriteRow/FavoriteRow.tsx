@@ -42,6 +42,8 @@ function FavoriteRow({ title }) {
     };
     fetchMovieData();
   }, []);
+
+  console.log(movies)
   
 
   if (movies) {

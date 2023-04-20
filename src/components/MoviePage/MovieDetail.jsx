@@ -51,9 +51,8 @@ function MovieDetail() {
   const fetchAddFavorite = async () => {
     const res = await fetchApi({
       method: "put",
-      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}`,
-      body: { code: movie.id, title: movie.title, poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date }
-      // headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}&type='movie'`,
+      body: { code: movie.id, title: movie.title, poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date,type: "movie" }
     });
     return res.data
   };
@@ -61,8 +60,7 @@ function MovieDetail() {
   const fetchDeleteFavorite = async () => {
     const res = await fetchApi({
       method: "delete",
-      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}`,
-      // headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}&type=movie`,
     });
     return res.data
   };
