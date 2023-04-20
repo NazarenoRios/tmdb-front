@@ -12,7 +12,7 @@ function Card({ movie }) {
 
   return (
     <Flex alignItems="center" justifyContent="center" >
-      <Link to={`/movie/${movie.code}`}>
+      <Link to={`/${movie.type}/${movie.code}`}>
         <div className="card">
           <p className="card__title pb-3">{truncate(movie.title, 32)}</p>
           <Image

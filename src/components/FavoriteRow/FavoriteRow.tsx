@@ -74,14 +74,14 @@ function FavoriteRow({ title }) {
                 key={i}
                 className="relative h-28 min-w-[180px] md:min-w-[380px] md:min-h-[220px]"
               >
-                <Link to={`/movie/${movie.code}`}>
+                <Link to={`/${movie.type}/${movie.code}`}>
                   <Image
                     key={movie.id}
                     className="row__poster "
                     src={`${base_url}${
                       movie.backdrop_path || movie.poster_path
                     }`}
-                    alt={movie.name}  
+                    alt={movie.name}
                     height="100%"
                     width="100%"
                   />
