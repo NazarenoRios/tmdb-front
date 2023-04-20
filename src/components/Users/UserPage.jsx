@@ -10,7 +10,7 @@ function UserPage() {
 
   const params = useLocation();
 
-  console.log(params)
+  console.log(params.pathname.split("/users/")[1].join())
 
   const [movies,setMovies] = useState([]);
 
