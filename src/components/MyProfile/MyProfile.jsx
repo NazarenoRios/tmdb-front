@@ -3,12 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import aside from "../../assets/background/aside.mp4";
 
 import { useInput } from "../../hooks/useInput";
-import {
-  updateProfile,
-  updateProfileLastname,
-  updateProfileName,
-  updateProfilePicture,
-} from "../../state/user";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -33,6 +27,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { getUser } from "../../state/updatedUser";
+import { fetchApi } from "../../config/axiosInstance";
 
 export default function MyProfile() {
   const name = useInput("name");
@@ -43,28 +38,85 @@ export default function MyProfile() {
 
   const user = useSelector((state) => state.users);
 
-  const [userUpdated,setUser] = useState({});
+  const [userUpdated, setUser] = useState({});
 
   //get updated user (for img)
+  // useEffect(() => {
+  //   dispatch(getUser({ id: user.id, setUser }));
+  // }, []);
+
   useEffect(() => {
-    dispatch(getUser({id: user.id, setUser}))
-  },[])
+    const fetchUser = async () => {
+      const res = await fetchApi({
+        method: "get",
+        url: `/api/users/user/${user.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      setUser(res.data)
+      return res.data
+    };
+    fetchUser();
+  }, []);
+
+  //update profile
+  const fetchUpdateProfile = async () => {
+    const res = await fetchApi({
+      method: "put",
+      url: "/api/users/profile",
+      body: {
+        name: name.value,
+        lastname: lastname.value,
+      },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.data;
+  };
+
+  const fetchupdateProfileName = async () => {
+    const res = await fetchApi({
+      method: "put",
+      url: "/api/users/profile",
+      body: { name: name.value },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.data;
+  };
+
+  const fetchupdateProfileLastname = async () => {
+    const res = await fetchApi({
+      method: "put",
+      url: "/api/users/profile",
+      body: { lastname: lastname.value },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.data;
+  };
+
+  const fetchupdateProfilePicture = async () => {
+    const res = await fetchApi({
+      method: "put",
+      url: "/api/users/profile",
+      body: { pic: pic },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.data;
+  };
 
   //submit
   const submitHandler = (e) => {
     e.preventDefault();
 
     if (name.value.length > 0 && lastname.value.length > 0) {
-      dispatch(updateProfile({ name, lastname }));
+      fetchUpdateProfile();
       navigate("/home");
     } else if (name.value.length > 0) {
-      dispatch(updateProfileLastname(name));
+      fetchupdateProfileLastname()
       navigate("/home");
     } else if (lastname.value.length > 0) {
-      dispatch(updateProfileName(lastname));
+      fetchupdateProfileName()
       navigate("/home");
     } else if (user.pic !== pic) {
-      dispatch(updateProfilePicture(pic));
+      fetchupdateProfilePicture()
       navigate("/home");
     }
   };
@@ -112,12 +164,6 @@ export default function MyProfile() {
   const onHoverImg = () => {
     setToggleIcon(!toggleIcon);
   };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setToggleMute(false)
-  //   },0)
-  // },[])
 
   return (
     <Stack
