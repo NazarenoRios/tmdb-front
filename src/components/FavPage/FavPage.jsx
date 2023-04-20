@@ -46,7 +46,7 @@ export default function FavPage() {
       >
         <Center>
           {/* <p className="text-white text-7xl">You don't have any movie or tv show in favorites</p> */}
-          <Text fontSize={{ base: '16px', md: '32px', lg: '48px' }} className="text-white">You don't have any movie or tv show in favorites</Text>
+          <Text fontSize={{ base: '24px',sm: '28px', md: '36px', lg: '46px', xl: '56px' }} className="text-white">You don't have any movie or tv show in favorites</Text>
         </Center>
       </Flex>
     </>
