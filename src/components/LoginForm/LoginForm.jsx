@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { fetchApi } from "../../config/axiosInstance";
 
 import { useInput } from "../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,10 +36,21 @@ export default function LoginForm() {
 
   const user = useSelector(state => state.users)
 
+  const fetchGoogleLogin = async (tokenResponse) => {
+    const res = await fetchApi({
+      method: "put",
+      url: "/api/users/googlelogin",
+      body: { credential: tokenResponse.credential },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    const goHome = await navigate("/home")
+
+    return res.data;
+  };
+
   const sucessGoogleResponse = (tokenResponse) => {
-    axios
-      .put("/api/users/googlelogin", { credential: tokenResponse.credential })
-      .then(() => navigate("/home"));
+    fetchGoogleLogin(tokenResponse)
   };
 
   // login with video
