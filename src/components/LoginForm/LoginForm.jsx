@@ -119,19 +119,13 @@ export default function LoginForm() {
   //   if (user.id) navigate("/home");
   // }, [user]);
 
-  const [key, setKey] = React.useState('');
-  const inputRef1 = React.useRef();
-  const inputRef2 = React.useRef();
-
-  const handleKeyDown1 = () => {
-    setKey(inputRef1.current.value);
+  const handleKeyDown1 = (e) => {
+    console.log(e.key)
   };
 
-  const handleKeyDown2 = () => {
-    setKey(inputRef2.current.value);
+  const handleKeyDown2 = (e) => {
+    console.log(e.key)
   };
-
-  console.log(key)
 
   if (loading) {
     return (
@@ -197,7 +191,6 @@ export default function LoginForm() {
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
-                  ref={inputRef1}
                   onKeyDown={handleKeyDown1}
                   _placeholder={{
                     color: "gray.500",
@@ -211,7 +204,6 @@ export default function LoginForm() {
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
-                  ref={inputRef2}
                   onKeyDown={handleKeyDown2}
                   _placeholder={{
                     color: "gray.500",
