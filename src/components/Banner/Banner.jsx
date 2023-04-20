@@ -6,9 +6,7 @@ import { MovieBannerRequest } from "../../state/movies";
 import { addToFavorites, Favorites } from "../../state/favorites";
 
 import "./Banner.css";
-import axios from "axios";
 import { fetchApi } from "../../config/axiosInstance";
-import requests from "../../utils/requests";
 
 function Banner() {
   const get_url = "https://api.themoviedb.org/3";
@@ -17,7 +15,7 @@ function Banner() {
   const [movies, setMovies] = useState([]);
 
   const movie = useSelector((state) => state.movies);
-  const users = useSelector((state) => state.users)
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   function truncate(str, n) {
@@ -36,34 +34,23 @@ function Banner() {
   //   });
   // }, []);
 
-  useEffect( () => {
-
-    const fetchBannerData = async () => {
-      const res = await fetchApi({
-      method: 'get',
-      url: `${get_url}${requests.fetchAnimation}`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
-    })
-
-    return res.data.results[Math.floor(Math.random() * res.data.results.length)]
-  };
-
+  useEffect(() => {
+    dispatch(MovieBannerRequest(get_url));
     const fetchMovieData = async () => {
       const res = await fetchApi({
-      method: 'get',
-      url: `/api/movies/favorites?userId=${users.id}`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
-    })
+        method: "get",
+        url: `/api/movies/favorites?userId=${users.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
 
-    setMovies(res.data)
-  };
-  fetchBannerData()
-  fetchMovieData()
+      setMovies(res.data);
+    };
+    fetchMovieData();
   }, []);
 
   useEffect(() => {
-    movies?.map(favMov => favMov.code === movie.id && setCheckFav(true))
-  },[movies])
+    movies?.map((favMov) => favMov.code === movie.id && setCheckFav(true));
+  }, [movies]);
 
   const addFavorite = (e) => {
     e.preventDefault();
@@ -73,11 +60,9 @@ function Banner() {
 
   const removeFavorite = (e) => {
     e.preventDefault();
-    setCheckFav(!checkFav)
-    dispatch(removeFavorite(movie))
+    setCheckFav(!checkFav);
+    dispatch(removeFavorite(movie));
   };
-
-
 
   return (
     <header
@@ -114,10 +99,12 @@ function Banner() {
               </button>
             )}
           </div>
-          
         </div>
 
-        <h1 style={{fontSize:"20px"}} className="banner__description text-xl">
+        <h1
+          style={{ fontSize: "20px" }}
+          className="banner__description text-xl"
+        >
           {truncate(movie?.overview, 250)}
         </h1>
       </div>

@@ -17,6 +17,7 @@ import {
   Favorites,
 } from "../../state/favorites";
 import axios from "axios";
+import { fetchApi } from "../../config/axiosInstance";
 
 function MovieDetail() {
   const get_url = "https://api.themoviedb.org/3";
@@ -35,15 +36,19 @@ function MovieDetail() {
 
   useEffect(() => {
     dispatch(MovieDetailRequest({ get_url, API_KEY, id }));
-    axios
-    .get(`/api/movies/favorites?userId=${users.id}`)
-    .then((res) => {
-      console.log(res)
-      setMovies(res.config.data)
-    });
-    // dispatch(Favorites(setMovies));
+    const fetchMovieData = async () => {
+      const res = await fetchApi({
+        method: "get",
+        url: `/api/movies/favorites?userId=${users.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      setMovies(res.data);
+    };
+    fetchMovieData();
   }, []);
 
+  
   useEffect(() => {
     movies && movies.map(favMov => favMov.code === movie.id && setCheckFav(true))
   },[movies])

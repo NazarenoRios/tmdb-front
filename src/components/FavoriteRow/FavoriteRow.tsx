@@ -5,8 +5,7 @@ import "./Row.css";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { Favorites } from "../../state/favorites";
-import axios from "axios";
+import { fetchApi } from "../../config/axiosInstance";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
@@ -32,12 +31,16 @@ function FavoriteRow({ title }) {
   const users = useSelector((state) => state.users)
 
   useEffect(() => {
-    axios
-    .get(`/api/movies/favorites?userId=${users.id}`)
-    .then((res) => {
-      console.log(res)
-      setMovies(res.config.data)
-    });
+    const fetchMovieData = async () => {
+      const res = await fetchApi({
+        method: "get",
+        url: `/api/movies/favorites?userId=${users.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      setMovies(res.data);
+    };
+    fetchMovieData();
   }, []);
   
 

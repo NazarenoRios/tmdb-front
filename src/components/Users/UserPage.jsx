@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { SimpleGrid } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { getUser } from '../../state/updatedUser';
 import UserPersonalCard from "../../common/Card/UserPersonalCard/UserPersonalCard";
 import UserInfoCard from "../../common/Card/UserPersonalCard/UserInfoCard";
-import { UserFavorites } from "../../state/favorites";
-import axios from "axios";
+import { fetchApi } from "../../config/axiosInstance";
 
 function UserPage() {
 
@@ -25,13 +23,16 @@ function UserPage() {
   const users = useSelector((state) => state.users)
 
   useEffect(() => {
-    // dispatch(UserFavorites({id,setMovies}));
-    axios
-    .get(`/api/movies/favorites?userId=${users.id}`)
-    .then((res) => {
-      console.log(res)
-      setMovies(res.config.data)
-    });
+    const fetchMovieData = async () => {
+      const res = await fetchApi({
+        method: "get",
+        url: `/api/movies/favorites?userId=${users.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      setMovies(res.data);
+    };
+    fetchMovieData();
   }, []);
 
   console.log("users",users)
