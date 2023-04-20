@@ -44,7 +44,9 @@ export default function LoginForm() {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
 
-    const goHome = await navigate("/home")
+    console.log(res)
+
+    // const goHome = await navigate("/home")
 
     return res.data;
   };
