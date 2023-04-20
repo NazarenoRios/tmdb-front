@@ -37,18 +37,25 @@ export default function LoginForm() {
   const user = useSelector(state => state.users)
 
   const fetchGoogleLogin = async (tokenResponse) => {
-    const res = await fetchApi({
+    const { status, data } = await fetchApi({
       method: "put",
       url: "/api/users/googlelogin",
       body: { credential: tokenResponse.credential },
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
 
-    console.log(res)
+    if (status === 201) {
+      localStorage.setItem("token", data.user.token);
+    }
 
-    // const goHome = await navigate("/home")
+    const res = await fetchApi({
+      method: 'get',
+      url: `/api/users/persistence/${data.user.id}`,
+    });
+
+    const goHome = await navigate("/home")
 
     return res.data;
+
   };
 
   const sucessGoogleResponse = (tokenResponse) => {
