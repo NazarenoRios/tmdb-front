@@ -26,7 +26,6 @@ import {
   Icon,
   Image,
 } from "@chakra-ui/react";
-import { fetchApi } from "../../config/axiosInstance";
 
 export default function LoginForm() {
   const email = useInput("email");
@@ -35,7 +34,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.users);
+  const user = useSelector(state => state.users)
 
   const sucessGoogleResponse = (tokenResponse) => {
     axios
@@ -47,42 +46,18 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [toggleMute, setToggleMute] = useState(true);
   const [navState, setNavState] = useState(true);
-  const [loginFail,setLoginFail] = useState(null)
 
-  const fetchLogin = async () => {
-    const { status, data } = await fetchApi({
-      method: "post",
-      url: "/api/users/login",
-      body: {
-        email: email.value,
-        password: password.value,
-      },
-    });
-
-    if (status === 201) {
-      localStorage.setItem("token", data.user.token);
-      setLoading(true);
-      setNavState(false);
-      setTimeout(() => {
-        setToggleMute(!toggleMute);
-      }, 0);
-      setTimeout(() => {
-        dispatch(sendLoginRequest({ email, password }));
-        setLoading(false);
-      }, 6000);
-    } else {
-      setLoginFail("Your email or password is incorrect")
-    }
-
-    const res = await fetchApi({
-      method: "get",
-      url: `/api/users/persistence/${data.user.id}`,
-    });
-
-    return res.data;
+  const changeState = () => {
+    setLoading(true);
+    setNavState(false);
+    setTimeout(() => {
+      setToggleMute(!toggleMute);
+    }, 0);
+    setTimeout(() => {
+      dispatch(sendLoginRequest({ email, password }));
+      setLoading(false);
+    }, 6000);
   };
-
-  const changeState = () => fetchLogin();
 
   useEffect(() => {
     if (user.id) navigate("/home");
@@ -170,7 +145,6 @@ export default function LoginForm() {
                   {...password}
                 />
               </Stack>
-              <span stlye={{color:"red", fontSize: "16px"}}>{loginFail}</span>
               <Button
                 type="submit"
                 fontFamily={"heading"}
