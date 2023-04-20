@@ -85,9 +85,7 @@ export default function LoginForm() {
         setLoading(false);
         navigate("/home");
       }, 6000);
-    }
-
-    if (!status) {
+    } else {
       setInvalidAccount("Incorrect email or password, please try again")
     }
 
