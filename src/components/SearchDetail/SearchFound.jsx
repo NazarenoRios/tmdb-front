@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { MovieSearchRequest, MovieSearchRequest2, MovieSetSearch, MovieSetSearch2, SerieSetSearch, SerieSetSearch2 } from "../../state/movies";
+import CategoryCard2 from "../../common/Card/CategoryCard2";
 
 function SearchFound() {
   
@@ -55,10 +56,10 @@ function SearchFound() {
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
         {series?.map((movie, i) => (
-          <CategoryCard movie={movie} key={i} />
+          <CategoryCard2 movie={movie} key={i} />
         ))}
         {series2?.map((movie, i) => (
-          <CategoryCard movie={movie} key={i} />
+          <CategoryCard2 movie={movie} key={i} />
         ))}
         {movies.map((movie, i) => (
           <CategoryCard movie={movie} key={i} />

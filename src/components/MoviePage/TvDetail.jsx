@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MovieDetailRequest } from "../../state/movies";
 import { fetchApi } from "../../config/axiosInstance";
 
-function MovieDetail() {
+function TvDetail() {
   const get_url = "https://api.themoviedb.org/3";
   const base_url = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "?api_key=a9891d14d2e4598d55823b3ec706cfb0";
@@ -53,7 +53,6 @@ function MovieDetail() {
       method: "put",
       url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}`,
       body: { code: movie.id, title: movie.title, poster_path: movie.poster_path, vote_average: movie.vote_average, release_date: movie.release_date }
-      // headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     return res.data
   };
@@ -62,7 +61,6 @@ function MovieDetail() {
     const res = await fetchApi({
       method: "delete",
       url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}`,
-      // headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
     return res.data
   };
@@ -175,4 +173,4 @@ function MovieDetail() {
   );
 }
 
-export default MovieDetail;
+export default TvDetail;

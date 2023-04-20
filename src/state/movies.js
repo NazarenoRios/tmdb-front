@@ -12,6 +12,11 @@ export const MovieDetailRequest = createAsyncThunk("MOVIE_DETAIL", ({get_url, AP
       .then(res => res.data)
 })
 
+export const TvDetailRequest = createAsyncThunk("MOVIE_DETAIL", ({get_url, API_KEY, id}) => {
+    return axios.get(`${get_url}/tv/${id}${API_KEY}&append_to_response=videos,images`)
+      .then(res => res.data)
+})
+
 export const MovieSearchRequest = createAsyncThunk("MOVIE_SEARCH", ({get_url, setMovies}) => {
     return axios.get(`${get_url}${requests.fetchAnimation}`)
       .then(res => setMovies(res.data.results))
@@ -59,6 +64,7 @@ const moviesReducer = createReducer(
     {},
     {
         [MovieDetailRequest.fulfilled]: (state,action) => action.payload,
+        [TvDetailRequest.fulfilled]: (state,action) => action.payload,
         [MovieBannerRequest.fulfilled]: (state,action) => action.payload,
         [MovieSearchRequest.fulfilled]: (state,action) => action.payload,
         [MovieSearchRequest2.fulfilled]: (state,action) => action.payload,

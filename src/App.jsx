@@ -4,6 +4,7 @@ import LoadingSpinner from "./common/LoadingSpinner";
 
 const Home = lazy(() => import("./pages/Home"))
 const MoviePage = lazy(() => import("./pages/MoviePage"))
+const TvPage = lazy(() => import("./pages/TvPage"))
 const SearchDetail = lazy(() => import("./pages/SearchDetail"))
 const Principal = lazy(() => import("./pages/Principal"))
 const LoginForm = lazy(() => import("./pages/LoginForm"))
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Suspense fallback={<LoadingSpinner/>} ><Principal /></Suspense>}/>
         <Route path="/home" element={<Suspense fallback={<LoadingSpinner/>} ><Home /></Suspense>} />
+        <Route path="/tv/:id" element={<Suspense fallback={<LoadingSpinner/>} ><TvPage /></Suspense>} />
         <Route path="/movie/:id" element={<Suspense fallback={<LoadingSpinner/>} ><MoviePage /></Suspense>} />
         <Route path="/search" element={<Suspense fallback={<LoadingSpinner/>} ><SearchDetail /></Suspense>} />
         <Route path="/login" element={<Suspense fallback={<LoadingSpinner/>} ><LoginForm /></Suspense>} />
