@@ -64,30 +64,9 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [toggleMute, setToggleMute] = useState(true);
 
-  const fetchLogin = async () => {
-    const { status, data } = await fetchApi({
-      method: "post",
-      url: "/api/users/login",
-      body: {
-        email: email.value,
-        password: password.value,
-      },
-    });
-
-    if (status === 201) {
-      localStorage.setItem("token", data.user.token);
-    }
-
-    const res = await fetchApi({
-      method: "get",
-      url: `/api/users/persistence/${data.user.id}`,
-    });
-
-    return res.data;
-  };
 
   const changeState = async () => {
-    const login = await fetchLogin();
+    const login = await dispatch(sendLoginRequest({ email, password }));
     const token = await localStorage.getItem("token");
 
     if (token) {
