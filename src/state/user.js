@@ -21,7 +21,7 @@ export const sendRegisterRequest = createAsyncThunk( "register", async({ email, 
 
 export const sendLoginRequest = createAsyncThunk(
   "login",
-  async ({ email, password, setLoading, setToggleMute, toggleMute, navigate }) => {
+  async ({ email, password }) => {
     try {
       const { status, data } = await fetchApi({
         method: 'post',
@@ -34,13 +34,6 @@ export const sendLoginRequest = createAsyncThunk(
       
       if (status === 201) {
         localStorage.setItem("token", data.user.token);
-        setLoading(true);
-        setTimeout(() => {
-          setToggleMute(!toggleMute);
-        }, 0);
-        setTimeout(() => {
-          setLoading(false);
-        }, 6000);
       }
 
       const res = await fetchApi({
