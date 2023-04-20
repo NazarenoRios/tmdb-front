@@ -3,8 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { fetchApi } from "../../config/axiosInstance";
 
 import { useInput } from "../../hooks/useInput";
-import { useDispatch, useSelector } from "react-redux";
-import { sendLoginRequest } from "../../state/user";
+import { useSelector } from "react-redux";
 
 import { GoogleLogin } from "@react-oauth/google";
 
@@ -25,13 +24,14 @@ import {
   IconProps,
   Icon,
   Image,
+  Center,
 } from "@chakra-ui/react";
 
 export default function LoginForm() {
   const email = useInput("email");
   const password = useInput("password");
+  const [invalidAccount,setInvalidAccount] = useState("")
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
@@ -87,6 +87,10 @@ export default function LoginForm() {
       }, 6000);
     }
 
+    if (status === 401) {
+      setInvalidAccount("Incorrect email or password, please try again")
+    }
+
     const res = await fetchApi({
       method: 'get',
       url: `/api/users/persistence/${data.user.id}`,
@@ -97,33 +101,8 @@ export default function LoginForm() {
 
   const changeState = (e) => {
     e.preventDefault()
-    // dispatch(sendLoginRequest({ email, password }));
     fetchLogin()
   };
-
-  // useEffect(() => {
-  //   if (user.id) {
-  //     setLoading(true);
-  //     setTimeout(() => {
-  //       setToggleMute(!toggleMute);
-  //     }, 0);
-  //     setTimeout(() => {
-  //       setLoading(false);
-  //       navigate("/home");
-  //     }, 6000);
-  //   }
-  // }, [user]);
-
-  // const changeState = () => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setToggleMute(!toggleMute);
-  //   }, 0);
-  //   setTimeout(() => {
-  //     dispatch(sendLoginRequest({ email, password }));
-  //     setLoading(false);
-  //   }, 6000);
-  // };
 
   useEffect(() => {
     if (user.id) navigate("/home");
@@ -226,6 +205,8 @@ export default function LoginForm() {
                   }}
                   {...password}
                 />
+
+                <Center className="text-red">{invalidAccount}</Center>
               </Stack>
               <Button
                 fontFamily={"heading"}
