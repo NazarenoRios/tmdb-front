@@ -85,8 +85,6 @@ export default function LoginForm() {
         setLoading(false);
         navigate("/home");
       }, 6000);
-    } else {
-      setInvalidAccount("Incorrect email or password, please try again")
     }
 
     const res = await fetchApi({
@@ -100,6 +98,7 @@ export default function LoginForm() {
   const changeState = (e) => {
     e.preventDefault()
     fetchLogin()
+    setInvalidAccount("Incorrect email or password, please try again")
   };
 
   useEffect(() => {
@@ -110,6 +109,7 @@ export default function LoginForm() {
     if (e.key === "Enter") {
       e.preventDefault();
       fetchLogin()
+      setInvalidAccount("Incorrect email or password, please try again")
     }
   };
 
@@ -117,6 +117,7 @@ export default function LoginForm() {
     if (e.key === "Enter") {
       e.preventDefault();
       fetchLogin()
+      setInvalidAccount("Incorrect email or password, please try again")
     }
   };
 
