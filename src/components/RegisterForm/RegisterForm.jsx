@@ -73,7 +73,7 @@ export default function RegisterForm() {
         name: name.value,
         lastname: lastname.value,
         },
-    });
+    }).catch(err => console.log(err))
 
     console.log(res)
 
