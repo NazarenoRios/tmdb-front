@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchApi } from "../../config/axiosInstance";
 
-import { useInput } from "../../hooks/useInput";
+import { useForm } from "react-hook-form"
 
 import { log, success, error } from "../../utils/logs";
 
@@ -52,11 +52,6 @@ const avatars = [
 
 export default function RegisterForm() {
 
-  const email = useInput("email");
-  const password = useInput("password");
-  const name = useInput("name");
-  const lastname = useInput("lastname");
-
   const [invalidAccount, setInvalidAccount] = useState("");
 
   const [showLoading,setShowLoading] = useState(null)
@@ -65,15 +60,15 @@ export default function RegisterForm() {
   const navigate = useNavigate();
 
   // login with db Acc
-  const fetchRegister = async () => {
+  const fetchRegister = async (data) => {
     const res = await fetchApi({
       method: 'post',
       url: "/api/users/register",
       body: {
-        email: email.value,
-        password: password.value,
-        name: name.value,
-        lastname: lastname.value,
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        lastname: data.lastname,
         },
     }).catch(err => {
       if (err.response.status === 401) {
@@ -82,19 +77,22 @@ export default function RegisterForm() {
         setInvalidAccount("Email already registered, try another");
       }
     })
-    
-    console.log(res)
- 
+
+    if (res.status === 201) {
+      setShowLoading(null)
+      setShowLoadingText(null)
+      setInvalidAccount("");
+    }
+     
     return res.data;
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault()
+  const onSubmit = (data) => {
     setInvalidAccount("")
     setShowLoading(<Loading/>)
     setShowLoadingText(`Loading..`)
     log("register attempt...");
-    fetchRegister()
+    fetchRegister(data)
     .then(() => {
       success(`new user registered`)
       navigate("/login")
@@ -103,6 +101,8 @@ export default function RegisterForm() {
   }
 
 
+  //React-hook-form
+  const { register, handleSubmit, formState: {errors} } = useForm()
 
   return (
     <Box className='mt-52' position={'relative'}>
@@ -187,7 +187,7 @@ export default function RegisterForm() {
           p={{ base: 4, sm: 6, md: 8 }}
           spacing={{ base: 8 }}
           maxW={{ lg: 'lg' }}
-          onSubmit={handleRegister}
+          onSubmit={handleSubmit(onSubmit)}
           >
           <Stack spacing={4}>
             <Heading
@@ -210,6 +210,7 @@ export default function RegisterForm() {
             <Stack spacing={4}>
               <Input
                 placeholder="Firstname"
+                id="name"
                 type="text"
                 borderTop={0}
                 borderRight={0}
@@ -218,10 +219,12 @@ export default function RegisterForm() {
                 _placeholder={{
                   color: 'gray.500',
                 }}
-                {...name}
+                {...register("name", { required:true })}
               />
+              {errors.name?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Name field cant be empty </span>}
               <Input
                 placeholder="Lastname"
+                id="lastname"
                 type="text"
                 borderTop={0}
                 borderRight={0}
@@ -230,10 +233,12 @@ export default function RegisterForm() {
                 _placeholder={{
                   color: 'gray.500',
                 }}
-                {...lastname}
+                {...register("lastname", { required:true })}
               />
+              {errors.lastname?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Lastname field cant be empty </span>}
               <Input
                 placeholder="firstname@example.com"
+                id="email"
                 type="email"
                 borderTop={0}
                 borderRight={0}
@@ -242,10 +247,12 @@ export default function RegisterForm() {
                 _placeholder={{
                   color: 'gray.500',
                 }}
-                {...email}
+                {...register("email", { required:true })}
               />
+              {errors.email?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Email field cant be empty </span>}
               <Input
                 placeholder="Password..."
+                id="password"
                 type="password"
                 borderTop={0}
                 borderRight={0}
@@ -254,8 +261,9 @@ export default function RegisterForm() {
                 _placeholder={{
                   color: 'gray.500',
                 }}
-                {...password}
+                {...register("password", { required:true })}
               />
+              {errors.password?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Password field cant be empty </span>}
               <Center color="red">{invalidAccount}</Center>
             </Stack>
             <Button

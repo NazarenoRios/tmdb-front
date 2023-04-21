@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { fetchApi } from "../../config/axiosInstance";
 
+import { useForm } from "react-hook-form"
 import { useInput } from "../../hooks/useInput";
 import { useSelector } from "react-redux";
 
@@ -92,13 +93,13 @@ export default function LoginForm() {
   };
 
   // login with db Acc
-  const fetchLogin = async () => {
+  const fetchLogin = async (info) => {
     const { status, data } = await fetchApi({
       method: "post",
       url: "/api/users/login",
       body: {
-        email: email.value,
-        password: password.value,
+        email: info.email,
+        password: info.password,
       },
     }).catch((err) => {
       if (err.response.status === 401) {
@@ -155,6 +156,17 @@ export default function LoginForm() {
     }
   };
 
+  //React-hook-form
+  const { register, handleSubmit, formState: {errors} } = useForm()
+
+
+  const onSubmit = (info) => {
+    setInvalidAccount("")
+    setShowLoading(<Loading/>)
+    setShowLoadingText(`Loading..`)
+    fetchLogin(info)
+  }
+
   if (loading) {
     return (
       <div
@@ -188,7 +200,7 @@ export default function LoginForm() {
             p={{ base: 4, sm: 6, md: 8 }}
             spacing={{ base: 8 }}
             maxW={{ lg: "lg" }}
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <Stack spacing={4}>
               <Center>{showLoading}</Center>
@@ -216,39 +228,44 @@ export default function LoginForm() {
               <Stack spacing={4}>
                 <Input
                   placeholder="firstname@example.com"
+                  id="email"
                   type="email"
                   borderTop={0}
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
-                  onKeyDown={handleKeyDown1}
+                  // onKeyDown={handleKeyDown1}
                   _placeholder={{
                     color: "gray.500",
                   }}
-                  {...email}
+                  {...register("email", { required:true })}
                 />
+                {errors.email?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Email field cant be empty </span>}
                 <Input
                   placeholder="Password..."
+                  id="password"
                   type="password"
                   borderTop={0}
                   borderRight={0}
                   borderLeft={0}
                   className="placeholder:text-center"
-                  onKeyDown={handleKeyDown2}
+                  // onKeyDown={handleKeyDown2}
                   _placeholder={{
                     color: "gray.500",
                   }}
-                  {...password}
+                  {...register("password", { required:true })}
                 />
+                {errors.password?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Password field cant be empty </span>}
                 <Center color="red">{invalidAccount}</Center>
               </Stack>
               <Button
+                type="submit"
                 fontFamily={"heading"}
                 mt={8}
                 w={"full"}
                 bgGradient="linear(to-r, blue.400,pink.400)"
                 color={"white"}
-                onClick={(e) => changeState(e)}
+                // onClick={(e) => changeState(e)}
                 _hover={{
                   bgGradient: "linear(to-r, red.400,pink.400)",
                   boxShadow: "xl",
