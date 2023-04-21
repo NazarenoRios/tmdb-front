@@ -51,7 +51,7 @@ function TvDetail() {
   const fetchAddFavorite = async () => {
     const res = await fetchApi({
       method: "put",
-      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}&type=tv`,
+      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.name}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.first_air_date}&type=tv`,
     });
     return res.data
   };
@@ -63,9 +63,6 @@ function TvDetail() {
     });
     return res.data
   };
-
-  console.log("123",movie)
-  console.log("asd",movies)
 
   const addFavorite = (e) => {
     e.preventDefault();
