@@ -16,7 +16,7 @@ import { fetchApi } from "../../config/axiosInstance";
 function MovieDetail() {
   const get_url = "https://api.themoviedb.org/3";
   const base_url = "https://image.tmdb.org/t/p/original/";
-  const API_KEY = "?api_key=a9891d14d2e4598d55823b3ec706cfb0";
+  const API_KEY = `?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
   const params = useParams();
   const id = JSON.stringify(parseInt(params.id));
 

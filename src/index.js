@@ -24,7 +24,9 @@ root.render(
   <StrictMode>
     <Router>
       <Provider store={store}>
-        <GoogleOAuthProvider clientId="860870041014-ouinu3c3c7162n61tuqnlubvrv7dlv3i.apps.googleusercontent.com">
+        <GoogleOAuthProvider
+          clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+        >
           <ChakraProvider theme={theme}>
             <App />
           </ChakraProvider>

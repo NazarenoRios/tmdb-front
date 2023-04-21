@@ -15,7 +15,7 @@ function SearchFound() {
   const [series2,setSeries2] = useState([]);
 
   const get_url = "https://api.themoviedb.org/3";
-  const API_KEY = "?api_key=a9891d14d2e4598d55823b3ec706cfb0";
+  const API_KEY = `?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
   const search = useInput();
   const dispatch = useDispatch();
