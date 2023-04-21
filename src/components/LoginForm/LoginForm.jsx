@@ -125,6 +125,7 @@ export default function LoginForm() {
 
   const changeState = (e) => {
     e.preventDefault();
+    setInvalidAccount("")
     setShowLoading(<Loading/>)
     setShowLoadingText(`Loading..`)
     fetchLogin();
@@ -137,6 +138,7 @@ export default function LoginForm() {
   const handleKeyDown1 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      setInvalidAccount("")
       setShowLoading(<Loading/>)
       setShowLoadingText(`Loading..`)
       fetchLogin();
@@ -146,6 +148,7 @@ export default function LoginForm() {
   const handleKeyDown2 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      setInvalidAccount("")
       setShowLoading(<Loading/>)
       setShowLoadingText(`Loading..`)
       fetchLogin();
