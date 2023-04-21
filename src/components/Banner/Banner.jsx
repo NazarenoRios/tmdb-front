@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { PlusIcon, CheckIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { MovieBannerRequest } from "../../state/movies";
-import { addToFavorites } from "../../state/favorites";
 
 import "./Banner.css";
 import { fetchApi } from "../../config/axiosInstance";
@@ -40,16 +39,32 @@ function Banner() {
     movies?.map((favMov) => favMov.code === movie.id && setCheckFav(true));
   }, [movies]);
 
+  const fetchAddFavorite = async () => {
+    const res = await fetchApi({
+      method: "put",
+      url: `/api/movies/addFavorite?userId=${users.id}&code=${movie.id}&title=${movie.title}&poster_path=${movie.poster_path}&vote_average=${movie.vote_average}&release_date=${movie.release_date}&type=movie`,
+    });
+    return res.data
+  };
+
+  const fetchDeleteFavorite = async () => {
+    const res = await fetchApi({
+      method: "delete",
+      url: `/api/movies/removeFavorite?userId=${users.id}&code=${movie.id}&type=movie`,
+    });
+    return res.data
+  };
+
   const addFavorite = (e) => {
     e.preventDefault();
     setCheckFav(!checkFav);
-    dispatch(addToFavorites(movie));
+    fetchAddFavorite()
   };
 
   const removeFavorite = (e) => {
     e.preventDefault();
     setCheckFav(!checkFav);
-    dispatch(removeFavorite(movie));
+    fetchDeleteFavorite();
   };
 
   return (
