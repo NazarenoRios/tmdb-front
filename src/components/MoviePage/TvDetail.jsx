@@ -10,7 +10,7 @@ import playIconBlack from "../../assets/playIcons/play-icon-black.svg";
 import favorites from "../../assets/btnIcons/favorites.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { MovieDetailRequest, TvDetailRequest } from "../../state/movies";
+import { TvDetailRequest } from "../../state/movies";
 import { fetchApi } from "../../config/axiosInstance";
 
 function TvDetail() {
@@ -63,6 +63,8 @@ function TvDetail() {
     });
     return res.data
   };
+
+  console.log(movie)
 
   const addFavorite = (e) => {
     e.preventDefault();
