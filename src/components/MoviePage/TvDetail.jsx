@@ -63,7 +63,9 @@ function TvDetail() {
     });
     return res.data
   };
-  
+
+  console.log("123",movie)
+  console.log("asd",movies)
 
   const addFavorite = (e) => {
     e.preventDefault();
