@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchApi } from "../../config/axiosInstance";
+
 
 import { useInput } from "../../hooks/useInput";
 
@@ -55,13 +57,39 @@ export default function RegisterForm() {
   const name = useInput("name");
   const lastname = useInput("lastname");
 
+  const [invalidAccount, setInvalidAccount] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // login with db Acc
+  const fetchRegister = async () => {
+    const res = await fetchApi({
+      method: 'post',
+      url: "/api/users/register",
+      body: {
+        email: email.value,
+        password: password.value,
+        name: name.value,
+        lastname: lastname.value,
+        },
+    });
+
+    console.log(res)
+
+    // if (status === 201) {
+    //   localStorage.setItem("token", data.user.token);
+    // }
+
+ 
+
+    return res.data;
+  };
 
   const handleRegister = (e) => {
     e.preventDefault()
     log("register attempt...");
-    dispatch(sendRegisterRequest({email,password,name,lastname}))
+    fetchRegister()
     .then(() => {
       success(`new user registered`)
       navigate("/login")
