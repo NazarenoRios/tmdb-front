@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchApi } from "../../config/axiosInstance";
 
-
 import { useInput } from "../../hooks/useInput";
 
 import { log, success, error } from "../../utils/logs";
 
-import { sendRegisterRequest } from "../../state/user";
-import { useDispatch } from "react-redux";
 
 import {
   Box,
@@ -25,6 +22,7 @@ import {
   useBreakpointValue,
   IconProps,
   Icon,
+  Center
 } from '@chakra-ui/react';
 
 const avatars = [
@@ -60,7 +58,6 @@ export default function RegisterForm() {
   const [invalidAccount, setInvalidAccount] = useState("");
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   // login with db Acc
   const fetchRegister = async () => {
@@ -73,16 +70,12 @@ export default function RegisterForm() {
         name: name.value,
         lastname: lastname.value,
         },
-    }).catch(err => console.log(err))
-
-    console.log(res)
-
-    // if (status === 201) {
-    //   localStorage.setItem("token", data.user.token);
-    // }
-
+    }).catch(err => {
+      if (err.response.status === 401) {
+        setInvalidAccount("Email already registered, try another");
+      }
+    })
  
-
     return res.data;
   };
 
@@ -249,6 +242,7 @@ export default function RegisterForm() {
                 }}
                 {...password}
               />
+              <Center color="red">{invalidAccount}</Center>
             </Stack>
             <Button
               type="submit"
