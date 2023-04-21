@@ -90,6 +90,7 @@ export default function RegisterForm() {
 
   const handleRegister = (e) => {
     e.preventDefault()
+    setInvalidAccount("")
     setShowLoading(<Loading/>)
     setShowLoadingText(`Loading..`)
     log("register attempt...");
