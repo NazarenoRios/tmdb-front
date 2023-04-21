@@ -124,37 +124,37 @@ export default function LoginForm() {
     return res.data;
   };
 
-  const changeState = (e) => {
-    e.preventDefault();
-    setInvalidAccount("")
-    setShowLoading(<Loading/>)
-    setShowLoadingText(`Loading..`)
-    fetchLogin();
-  };
+  // const changeState = (e) => {
+  //   e.preventDefault();
+  //   setInvalidAccount("")
+  //   setShowLoading(<Loading/>)
+  //   setShowLoadingText(`Loading..`)
+  //   fetchLogin();
+  // };
 
   useEffect(() => {
     if (user.id) navigate("/home");
   }, []);
 
-  const handleKeyDown1 = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      setInvalidAccount("")
-      setShowLoading(<Loading/>)
-      setShowLoadingText(`Loading..`)
-      fetchLogin();
-    }
-  };
+  // const handleKeyDown1 = (e) => {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //     setInvalidAccount("")
+  //     setShowLoading(<Loading/>)
+  //     setShowLoadingText(`Loading..`)
+  //     fetchLogin();
+  //   }
+  // };
 
-  const handleKeyDown2 = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      setInvalidAccount("")
-      setShowLoading(<Loading/>)
-      setShowLoadingText(`Loading..`)
-      fetchLogin();
-    }
-  };
+  // const handleKeyDown2 = (e) => {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //     setInvalidAccount("")
+  //     setShowLoading(<Loading/>)
+  //     setShowLoadingText(`Loading..`)
+  //     fetchLogin();
+  //   }
+  // };
 
   //React-hook-form
   const { register, handleSubmit, formState: {errors} } = useForm()
