@@ -6,6 +6,8 @@ import { useInput } from "../../hooks/useInput";
 
 import { log, success, error } from "../../utils/logs";
 
+import Loading from "../../common/Loading"
+
 
 import {
   Box,
@@ -57,6 +59,9 @@ export default function RegisterForm() {
 
   const [invalidAccount, setInvalidAccount] = useState("");
 
+  const [showLoading,setShowLoading] = useState(null)
+  const [showLoadingText,setShowLoadingText] = useState(null)
+
   const navigate = useNavigate();
 
   // login with db Acc
@@ -72,15 +77,21 @@ export default function RegisterForm() {
         },
     }).catch(err => {
       if (err.response.status === 401) {
+        setShowLoading(null)
+        setShowLoadingText(null)
         setInvalidAccount("Email already registered, try another");
       }
     })
+    
+    console.log(res)
  
     return res.data;
   };
 
   const handleRegister = (e) => {
     e.preventDefault()
+    setShowLoading(<Loading/>)
+    setShowLoadingText(`Loading..`)
     log("register attempt...");
     fetchRegister()
     .then(() => {
@@ -94,6 +105,8 @@ export default function RegisterForm() {
 
   return (
     <Box className='mt-52' position={'relative'}>
+      <Center>{showLoading}</Center>
+      <Center fontWeight='bold' color='#5ddcff'>{showLoadingText}</Center>
       <Container
         as={SimpleGrid}
         maxW={'7xl'}
@@ -258,7 +271,6 @@ export default function RegisterForm() {
               Submit
             </Button>
           </Box>
-          form
         </Stack>
       </Container>
       <Blur

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 import { GoogleLogin } from "@react-oauth/google";
 
+import Loading from "../../common/Loading"
 import videoloader from "../../assets/loader/video1.mp4";
 import logo from "../../assets/logo/butterLogo3.png";
 import styled from "styled-components";
@@ -31,6 +32,8 @@ export default function LoginForm() {
   const email = useInput("email");
   const password = useInput("password");
   const [invalidAccount, setInvalidAccount] = useState("");
+  const [showLoading,setShowLoading] = useState(null)
+  const [showLoadingText,setShowLoadingText] = useState(null)
 
   const navigate = useNavigate();
 
@@ -59,11 +62,15 @@ export default function LoginForm() {
       body: { credential: tokenResponse.credential },
     }).catch(err => {
       if (err.response.status === 401) {
+        setShowLoading(null)
+        setShowLoadingText(null)
         setInvalidAccount("Incorrect email or password, please try again");
       }
     })
 
     if (status === 201) {
+      setShowLoading(null)
+      setShowLoadingText(null)
       localStorage.setItem("token", data.token);
       videoLogin();
     }
@@ -79,6 +86,8 @@ export default function LoginForm() {
   };
 
   const sucessGoogleResponse = (tokenResponse) => {
+    setShowLoading(<Loading/>)
+    setShowLoadingText(`Loading..`)
     fetchGoogleLogin(tokenResponse);
   };
 
@@ -93,11 +102,15 @@ export default function LoginForm() {
       },
     }).catch((err) => {
       if (err.response.status === 401) {
+        setShowLoading(null)
+        setShowLoadingText(null)
         setInvalidAccount("Incorrect email or password, please try again");
       }
     });
 
     if (status === 201) {
+      setShowLoading(null)
+      setShowLoadingText(null)
       localStorage.setItem("token", data.user.token);
       videoLogin();
     }
@@ -112,6 +125,8 @@ export default function LoginForm() {
 
   const changeState = (e) => {
     e.preventDefault();
+    setShowLoading(<Loading/>)
+    setShowLoadingText(`Loading..`)
     fetchLogin();
   };
 
@@ -122,6 +137,8 @@ export default function LoginForm() {
   const handleKeyDown1 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      setShowLoading(<Loading/>)
+      setShowLoadingText(`Loading..`)
       fetchLogin();
     }
   };
@@ -129,6 +146,8 @@ export default function LoginForm() {
   const handleKeyDown2 = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      setShowLoading(<Loading/>)
+      setShowLoadingText(`Loading..`)
       fetchLogin();
     }
   };
@@ -169,6 +188,8 @@ export default function LoginForm() {
             // onSubmit={handleSubmit}
           >
             <Stack spacing={4}>
+              <Center>{showLoading}</Center>
+              <Center fontWeight='bold' color='#5ddcff'>{showLoadingText}</Center>
               <Heading
                 className="text-white text-center"
                 lineHeight={1.1}
@@ -216,7 +237,6 @@ export default function LoginForm() {
                   }}
                   {...password}
                 />
-
                 <Center color="red">{invalidAccount}</Center>
               </Stack>
               <Button
@@ -233,6 +253,9 @@ export default function LoginForm() {
               >
                 Submit
               </Button>
+              <br/>
+              <br/> 
+              
             </Box>
 
             <div className="text-[gray] text-center">
