@@ -63,8 +63,7 @@ function TvDetail() {
     });
     return res.data
   };
-
-  console.log(movie)
+  
 
   const addFavorite = (e) => {
     e.preventDefault();
