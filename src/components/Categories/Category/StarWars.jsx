@@ -6,6 +6,7 @@ import CategoryCard from "../../../common/Card/CategoryCard";
 import { CategoryStarWarsRequest } from "../../../state/categories";
 import LoadingSpinner from "../../../common/LoadingSpinner";
 import { fetchApi } from "../../../config/axiosInstance";
+import NeedToLogin from "../../../pages/NeedToLogin";
 
 export default function StarWars() {
   const get_url = "https://api.themoviedb.org/3";
@@ -31,7 +32,7 @@ export default function StarWars() {
     });
 
     if (res.status !== 200) {
-      setToggleNeedToLogIn(<NeedToLogIn />);
+      setToggleNeedToLogIn(<NeedToLogin />);
     }
 
     const { data } = await fetchApi({

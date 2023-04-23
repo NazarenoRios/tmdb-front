@@ -8,6 +8,7 @@ import LoadingSpinner from "../../../common/LoadingSpinner";
 import axios from "axios";
 import requests from "../../../utils/requests";
 import { fetchApi } from "../../../config/axiosInstance";
+import NeedToLogin from "../../../pages/NeedToLogin";
 
 export default function Disney() {
   const get_url = "https://api.themoviedb.org/3";
@@ -34,7 +35,7 @@ export default function Disney() {
     });
 
     if (res.status !== 200) {
-      setToggleNeedToLogIn(<NeedToLogIn />);
+      setToggleNeedToLogIn(<NeedToLogin />);
     }
 
     const { data } = await fetchApi({
