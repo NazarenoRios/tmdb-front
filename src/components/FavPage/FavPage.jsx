@@ -1,15 +1,16 @@
-import { Center, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
 import Card from "../../common/Card/Card";
 import { fetchApi } from "../../config/axiosInstance";
-import LoadingSpinner from "../../common/LoadingSpinner";
+import Loading from "../../common/Loading";
+import NoMovies from "./NoMovies";
 
 export default function FavPage() {
 
   const [movies, setMovies] = useState([]);
-  const [toggleNoMovies, setToggleNoMovies] = useState(<LoadingSpinner/>);
+  const [toggleNoMovies, setToggleNoMovies] = useState(<Loading/>);
 
   const users = useSelector((state) => state.users);
 
@@ -21,7 +22,9 @@ export default function FavPage() {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 
-      console.log(res)
+      if (res.status !== 200) {
+        setToggleNoMovies(<NoMovies/>)
+      }
 
       setMovies(res.data);
     };
@@ -43,16 +46,7 @@ export default function FavPage() {
 
   return (
     <>
-      <Flex
-        width={"100vw"}
-        height={"100vh"}
-        alignContent={"center"}
-        justifyContent={"center"}
-      >
-        <Center>
-          <Text fontSize={{ base: '24px',sm: '28px', md: '36px', lg: '46px', xl: '56px' }} className="text-white">You don't have any movie or tv show in favorites</Text>
-        </Center>
-      </Flex>
+      {toggleNoMovies}
     </>
   );
 }
