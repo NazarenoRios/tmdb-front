@@ -1,8 +1,8 @@
 import React from "react";
 import { useState , useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { checkLogin, logOut } from "../../state/user";
+import { logOut } from "../../state/user";
 
 import { success } from "../../utils/logs";
 
@@ -31,12 +31,7 @@ function LoginNav() {
   //logout
 
   const navigate = useNavigate();
-  // const user = useSelector(state => state.users)
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(checkLogin())
-  // }, []);
   
   const handleLogout = function () {
     dispatch(logOut())
@@ -45,8 +40,6 @@ function LoginNav() {
   };
 
   const user = localStorage.getItem("token");
-
-  // console.log(user)
 
   if (user) {
     return (
