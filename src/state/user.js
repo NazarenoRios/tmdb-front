@@ -60,9 +60,7 @@ export const checkLogin = createAsyncThunk("check", async (setToggleNeedToLogIn)
       url: "/api/users/me",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
     })
-  
-    console.log(res)
-  
+    
     if (res.status !== 200) {
       setToggleNeedToLogIn(<NeedToLogin/>)
     } 
@@ -74,7 +72,7 @@ export const checkLogin = createAsyncThunk("check", async (setToggleNeedToLogIn)
   
     return data;
   } catch (err) {
-    console.log(err)
+    setToggleNeedToLogIn(<NeedToLogin/>)
   }
 });
 
