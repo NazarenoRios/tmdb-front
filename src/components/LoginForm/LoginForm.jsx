@@ -165,7 +165,7 @@ export default function LoginForm() {
           </a>
         </Nav>
         <br></br>
-        <Home>{t("login.home")}</Home>
+        <Home>{t("login.Home")}</Home>
 
         <Container as={SimpleGrid} py={{ base: 10, sm: 20, lg: 32 }}>
           <Stack
