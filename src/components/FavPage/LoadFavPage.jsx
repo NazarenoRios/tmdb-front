@@ -1,14 +1,19 @@
 import React from "react";
 import Loading from "../../common/Loading";
-import { Center } from "@chakra-ui/react";
+import { Center, Flex } from "@chakra-ui/react";
 
 const LoadFavPage = () => {
   return (
-    <>
+    <Flex
+      width={"100vw"}
+      height={"100vh"}
+      alignContent={"center"}
+      justifyContent={"center"}
+    >
       <Center>
-        <Loading />
+        <Loading/>
       </Center>
-    </>
+    </Flex>
   );
 };
 
