@@ -7,11 +7,11 @@ import requests from "../utils/requests";
 import PreFooter from '../common/PreFooter'
 import Footer from "../common/Footer";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkLogin } from "../state/user";
 import FavoriteRow from "../components/FavoriteRow/FavoriteRow.tsx";
 
 import NeedToLogIn from "../pages/NeedToLogin";
-import { fetchApi } from "../config/axiosInstance";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 
@@ -20,32 +20,11 @@ export default function Home() {
 
   const [toggleNeedToLogIn, setToggleNeedToLogIn] = useState(<LoadingSpinner/>);
 
-  const user = useSelector((state) => state.users);
-
-  const checkLogin = async () => {
-
-    const res = await fetchApi({
-      method: 'get',
-      url: "/api/users/me",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
-    })
-
-    if (res.status !== 200) {
-      setToggleNeedToLogIn(<NeedToLogIn/>)
-    } 
-
-    console.log(res)
-  
-    const { data } = await fetchApi({
-      method: 'get',
-      url: `/api/users/persistence/${res.data.id}`
-    });
-  
-    return data;
-  }
+  const user = useSelector(state => state.users)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    checkLogin()
+    dispatch(checkLogin(setToggleNeedToLogIn))
   }, []);
 
   if (user.id) {

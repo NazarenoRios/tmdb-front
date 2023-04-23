@@ -1,6 +1,7 @@
 import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 import axios from "axios";
 import {fetchApi} from "../config/axiosInstance"
+import NeedToLogin from "../pages/NeedToLogin";
 
 export const sendRegisterRequest = createAsyncThunk( "register", async({ email, password, name, lastname }) => {
 
@@ -51,13 +52,17 @@ export const sendLoginRequest = createAsyncThunk(
   }
 );
 
-export const checkLogin = createAsyncThunk("check", async () => {
+export const checkLogin = createAsyncThunk("check", async (setToggleNeedToLogIn) => {
 
   const res = await fetchApi({
     method: 'get',
     url: "/api/users/me",
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
   })
+
+  if (res.status !== 200) {
+    setToggleNeedToLogIn(<NeedToLogin/>)
+  } 
 
   const { data } = await fetchApi({
     method: 'get',
