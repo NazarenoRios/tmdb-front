@@ -16,7 +16,9 @@ function TvPage() {
     dispatch(checkLogin())
   }, []);
 
-    if (user.id) {
+  const token = localStorage.getItem("token")
+
+    if (token) {
       return (
         <>
           <Nav />
