@@ -54,24 +54,28 @@ export const sendLoginRequest = createAsyncThunk(
 
 export const checkLogin = createAsyncThunk("check", async (setToggleNeedToLogIn) => {
 
-  const res = await fetchApi({
-    method: 'get',
-    url: "/api/users/me",
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
-  })
-
-  console.log(res)
-
-  if (res.status !== 200) {
-    setToggleNeedToLogIn(<NeedToLogin/>)
-  } 
-
-  const { data } = await fetchApi({
-    method: 'get',
-    url: `/api/users/persistence/${res.data.id}`
-  });
-
-  return data;
+  try {
+    const res = await fetchApi({
+      method: 'get',
+      url: "/api/users/me",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
+    })
+  
+    console.log(res)
+  
+    if (res.status !== 200) {
+      setToggleNeedToLogIn(<NeedToLogin/>)
+    } 
+  
+    const { data } = await fetchApi({
+      method: 'get',
+      url: `/api/users/persistence/${res.data.id}`
+    });
+  
+    return data;
+  } catch (err) {
+    console.log(err)
+  }
 });
 
 
