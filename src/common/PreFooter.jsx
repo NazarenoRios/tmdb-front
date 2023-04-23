@@ -8,7 +8,7 @@ function PreFooter() {
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 ml-8 ">
           © 2022{" "}
           <a
-            href="https://flowbite.com/"
+            href="https://butterflix.vercel.app/"
             className="hover:underline hover:text-white"
           >
             Butterflix™
@@ -20,19 +20,19 @@ function PreFooter() {
       <div className="list">
         <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
-            <a href="/" className="mr-4 hover:underline md:mr-6 hover:text-white">
+            <span href="/" className="mr-4 hover:underline md:mr-6 hover:text-white">
               Privacy
-            </a>
+            </span>
           </li>
           <li>
-            <a href="/" className="mr-4 hover:underline md:mr-6 hover:text-white">
+            <span href="/" className="mr-4 hover:underline md:mr-6 hover:text-white">
               Terms
-            </a>
+            </span>
           </li>
           <li>
-            <a href="/" className="mr-4 hover:underline md:mr-6 hover:text-white">
+            <span href="/" className="mr-4 hover:underline md:mr-6 hover:text-white">
               Help
-            </a>
+            </span>
           </li>
           <li>
             <a href="/" className="hover:underline hover:text-white">
