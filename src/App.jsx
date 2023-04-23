@@ -21,8 +21,6 @@ const StarWars = lazy(() => import("./components/Categories/Category/StarWars"))
 const NatGeo = lazy(() => import("./components/Categories/Category/NatGeo"))
 // const Chat = lazy(() => import("./pages/Chat"))
 
-
-
 function App() {
 
   return (
