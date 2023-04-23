@@ -64,7 +64,7 @@ function LoginNav() {
             href="/"
             className="text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] flex items-center justify-center py-2.5 px-6 rounded hover:bg-[#c6c6c6] hover:text-color hover:text-[#050714] ml-auto cursor-pointer"
           >
-            <span className="uppercase font-medium tracking-wide">LOG OUT</span>
+            <span className="uppercase font-medium tracking-wide">{t("nav.LogOut")}</span>
           </a>
         </nav>
       </>
@@ -85,7 +85,7 @@ function LoginNav() {
           to="/login"
           className="text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] flex items-center justify-center py-2.5 px-6 rounded hover:bg-[#c6c6c6] hover:text-color hover:text-[#050714] ml-auto cursor-pointer"
         >
-          <span className="uppercase font-medium tracking-wide">LOG IN</span>
+          <span className="uppercase font-medium tracking-wide">{t("nav.LogIn")}</span>
         </Link>
       </nav>
     </>

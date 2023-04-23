@@ -154,9 +154,8 @@ function Nav() {
         </ul>
       </div>
 
-      <div>
-        
-        <select className=" float-left text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] py-2.5 px-6 rounded hover:bg-[#c6c6c6] hover:text-color hover:text-[#050714] cursor-pointer"
+      <div className="flex">
+      <select className="mr-4 mt-2 h-10 float-left text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] px-6 rounded hover:bg-[#c6c6c6] hover:text-color hover:text-[#050714] cursor-pointer"
           onChange={(e) => toggleLenguague(e)}
           >
           <option value="es">{t("nav.Spanish")}</option>
