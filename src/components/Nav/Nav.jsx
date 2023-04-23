@@ -30,9 +30,10 @@ function Nav() {
   const dispatch = useDispatch();
 
   const handleLogout = function () {
-    dispatch(logOut())
-    success("logged out");
+    dispatch(logOut()).then(() => {
+      success("logged out");
     navigate("/");
+    })
   };
 
   //popup
