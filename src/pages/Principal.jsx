@@ -8,7 +8,6 @@ import LoginNav from "../components/LoginPage/LoginNav";
 import LoginPhotos from "../components/LoginPage/LoginPhotos";
 import LoginStream from "../components/LoginPage/LoginStream";
 import PreFooter from '../common/PreFooter'
-import Home from "./Home";
 
 function Principal() {
 
@@ -20,12 +19,6 @@ function Principal() {
       navigate("/home")
     }
   },[token])
-
-  // if (token) {
-  //   return (
-  //     <Home/>
-  //   )
-  // }
 
   return (
     <>

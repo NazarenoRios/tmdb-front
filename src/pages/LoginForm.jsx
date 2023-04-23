@@ -1,14 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm/LoginForm";
-import Home from "./Home";
 
 function LoginF() {
 
+  const navigate = useNavigate();
   const token = localStorage.getItem("token")
 
-  if (token) {
-    return <Home />;
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/home")
+    }
+  },[token])
 
   return (
     <>

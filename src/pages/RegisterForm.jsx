@@ -1,15 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
 import RegisterNav from "../components/RegisterForm/RegisterNav";
-import Home from "./Home";
 
 function RegisterF() {
 
+  const navigate = useNavigate();
   const token = localStorage.getItem("token")
 
-  if (token) {
-    return <Home />;
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/home")
+    }
+  },[token])
 
   return (
     <>
