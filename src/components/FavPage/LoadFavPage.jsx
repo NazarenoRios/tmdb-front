@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react";
 import Loading from "../../common/Loading";
 
 const LoadFavPage = () => {
   return (
-    <Center>
-        <Loading/>
-    </Center>
-  )
-}
+    <>
+      <Center>
+        <Loading />
+      </Center>
+    </>
+  );
+};
 
-export default LoadFavPage
+export default LoadFavPage;
