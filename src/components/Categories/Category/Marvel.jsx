@@ -5,8 +5,6 @@ import Nav from "../../Nav/Nav";
 import CategoryCard from "../../../common/Card/CategoryCard";
 import { CategoryMarvelRequest } from "../../../state/categories";
 import LoadingSpinner from "../../../common/LoadingSpinner";
-import { fetchApi } from "../../../config/axiosInstance";
-import NeedToLogin from "../../../pages/NeedToLogin";
 
 export default function Marvel() {
   const get_url = "https://api.themoviedb.org/3";
@@ -18,33 +16,13 @@ export default function Marvel() {
     dispatch(CategoryMarvelRequest({get_url,setMovies}));
   }, []);
 
-  const [toggleNeedToLogIn, setToggleNeedToLogIn] = useState(
-    <LoadingSpinner />
-  );
+  //toggleNeedToLogIn
+  const [toggleNeedToLogIn, setToggleNeedToLogIn] = useState(<LoadingSpinner/>);
 
-  const user = useSelector((state) => state.users);
-
-  const checkLogin = async () => {
-    const res = await fetchApi({
-      method: "get",
-      url: "/api/users/me",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    });
-
-    if (res.status !== 200) {
-      setToggleNeedToLogIn(<NeedToLogin />);
-    }
-
-    const { data } = await fetchApi({
-      method: "get",
-      url: `/api/users/persistence/${res.data.id}`,
-    });
-
-    return data;
-  };
+  const user = useSelector(state => state.users)
 
   useEffect(() => {
-    checkLogin();
+    dispatch(checkLogin(setToggleNeedToLogIn))
   }, []);
 
   if (user.id) {

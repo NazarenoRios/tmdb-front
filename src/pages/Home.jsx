@@ -11,10 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkLogin } from "../state/user";
 import FavoriteRow from "../components/FavoriteRow/FavoriteRow.tsx";
 
-import NeedToLogIn from "../pages/NeedToLogin";
 import LoadingSpinner from "../common/LoadingSpinner";
-
-
 
 export default function Home() {
 
