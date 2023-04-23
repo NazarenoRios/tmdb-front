@@ -111,14 +111,14 @@ function Nav() {
             </li>
           </Link>
 
-          {/* <Link to="/chat"> */}
+          <Link to="/contact">
             <li className="">
               <div className="btn">
                 <img src={chatBtn} alt="" />
-                <label>CHAT</label>
+                <label>CONTACT</label>
               </div>
             </li>
-          {/* </Link> */}
+          </Link>
 
           <Link to="/users">
             <li className="">
