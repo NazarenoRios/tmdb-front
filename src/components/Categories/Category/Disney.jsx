@@ -7,6 +7,7 @@ import { CategoryDisneyRequest } from "../../../state/categories";
 import LoadingSpinner from "../../../common/LoadingSpinner";
 import axios from "axios";
 import requests from "../../../utils/requests";
+import { fetchApi } from "../../../config/axiosInstance";
 
 export default function Disney() {
   const get_url = "https://api.themoviedb.org/3";

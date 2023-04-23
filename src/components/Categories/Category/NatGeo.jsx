@@ -5,6 +5,7 @@ import Nav from "../../Nav/Nav";
 import CategoryCard from "../../../common/Card/CategoryCard";
 import { CategoryNatGeo } from "../../../state/categories";
 import LoadingSpinner from "../../../common/LoadingSpinner";
+import { fetchApi } from "../../../config/axiosInstance";
 
 export default function NatGeo() {
   const get_url = "https://api.themoviedb.org/3";
