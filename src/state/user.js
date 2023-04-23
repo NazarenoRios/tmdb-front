@@ -64,6 +64,8 @@ export const checkLogin = createAsyncThunk("check", async () => {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}`}
   })
 
+  console.log(res)
+
   const { data } = await fetchApi({
     method: 'get',
     url: `/api/users/persistence/${res.data.id}`
