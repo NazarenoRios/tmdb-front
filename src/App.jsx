@@ -20,6 +20,7 @@ const Pixar = lazy(() => import("./components/Categories/Category/Pixar"))
 const StarWars = lazy(() => import("./components/Categories/Category/StarWars"))
 const NatGeo = lazy(() => import("./components/Categories/Category/NatGeo"))
 const NotFound = lazy(() => import("./pages/NotFound"))
+const Contact = lazy(() => import("./pages/ContactPage"))
 // const Chat = lazy(() => import("./pages/Chat"))
 
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/pixar" element={<Suspense fallback={<LoadingSpinner/>} ><Pixar /></Suspense>}/>
         <Route path="/starwars" element={<Suspense fallback={<LoadingSpinner/>} ><StarWars /></Suspense>}/>
         <Route path="/*" element={<Suspense fallback={<LoadingSpinner/>} ><NotFound/></Suspense>}/>
+        <Route path="/contact" element={<Suspense fallback={<LoadingSpinner/>} ><Contact /></Suspense>}/>
         {/* <Route path="/chat" element={<Suspense fallback={<LoadingSpinner/>} ><Chat /></Suspense>}/> */}
       </Routes>
   );

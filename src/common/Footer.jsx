@@ -1,25 +1,24 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle, faNapster, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, faWhatsapp, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <PFooter className="p-4 bg-[transparent] rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
       <div className="text-sm text-gray-500 sm:text-center dark:text-gray-400 space-x-7">
-        <a href="https://www.youtube.com/" target="_blank" rel="noreferrer" className="hover:text-white">
-          <FontAwesomeIcon icon={faNapster} />
+        <a href="https://api.WhatsApp.com/send?phone=2216567792" target="_blank" rel="noreferrer" className="hover:text-white">
+          <FontAwesomeIcon icon={faWhatsapp} />
         </a>
 
-        <Link to="/contact"> <FontAwesomeIcon icon={faGoogle} /></Link>
+        <a href="mailto:nazarenolrios@gmail.com" target="_blank" rel="noreferrer"> <FontAwesomeIcon icon={faGoogle} /></a>
 
-        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" className="hover:text-white">
+        <a href="https://github.com/NazarenoRios" target="_blank" rel="noreferrer" className="hover:text-white">
           <FontAwesomeIcon icon={faGithub} />
         </a>
 
-        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="hover:text-white">
+        <a href="https://www.linkedin.com/in/nazareno-rios/" target="_blank" rel="noreferrer" className="hover:text-white">
           <FontAwesomeIcon icon={faLinkedin} />
         </a>
       </div>
