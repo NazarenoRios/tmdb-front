@@ -22,7 +22,19 @@ import { useTranslation } from "react-i18next";
 
 function Nav() {
 
+  //translation
   const [t,i18n] = useTranslation("global");
+
+  const toggleLenguague = (e) => {
+    
+    if (e.target.value === "es") {
+      i18n.changeLanguage("es")
+    }
+
+    if (e.target.value === "en") {
+      i18n.changeLanguage("en")
+    }
+  }
 
   const [updatedUser,setUser] = useState({})
 
@@ -142,7 +154,17 @@ function Nav() {
         </ul>
       </div>
 
-      <UserProfile onClick={togglePopUp} ><img src={updatedUser.pic} style={{height:"50px"}} alt="profileIcon" /></UserProfile>
+      <div>
+        
+        <select className=" float-left text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] py-2.5 px-6 rounded hover:bg-[#c6c6c6] hover:text-color hover:text-[#050714] cursor-pointer"
+          onChange={(e) => toggleLenguague(e)}
+          >
+          <option value="es">{t("nav.Spanish")}</option>
+          <option value="en">{t("nav.English")}</option>
+        </select>
+
+        <UserProfile onClick={togglePopUp} ><img src={updatedUser.pic} style={{height:"50px"}} alt="profileIcon" /></UserProfile>
+      </div>
 
       <DropMenu activeState={popUp} >
         <div className="btn flex dropmenu">

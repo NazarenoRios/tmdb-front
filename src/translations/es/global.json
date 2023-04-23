@@ -1,7 +1,9 @@
 {
     "nav": {
         "English": "Ingles",
-        "Spanish": "Español"
+        "Spanish": "Español",
+        "LogIn": "INICIAR SESION",
+        "LogOut": "CERRAR SESION"
     },
     "principal": {
         "free-Register-Here": "REGISTRESE AQUI",
