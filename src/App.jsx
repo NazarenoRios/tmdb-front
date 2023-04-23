@@ -44,7 +44,7 @@ function App() {
         <Route path="/natgeo" element={<Suspense fallback={<LoadingSpinner/>} ><NatGeo /></Suspense>}/>
         <Route path="/pixar" element={<Suspense fallback={<LoadingSpinner/>} ><Pixar /></Suspense>}/>
         <Route path="/starwars" element={<Suspense fallback={<LoadingSpinner/>} ><StarWars /></Suspense>}/>
-        <Route path="/*" element={<NeedToLogin} />
+        <Route path="/*" element={<NeedToLogin/>} />
         {/* <Route path="/chat" element={<Suspense fallback={<LoadingSpinner/>} ><Chat /></Suspense>}/> */}
       </Routes>
   );
