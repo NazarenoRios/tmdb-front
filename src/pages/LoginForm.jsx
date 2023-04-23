@@ -13,7 +13,9 @@ function LoginF() {
     dispatch(checkLogin())
   }, []);
 
-  if (user.id) {
+  const token = localStorage.getItem("token")
+
+  if (token) {
     return <Home />;
   }
 
