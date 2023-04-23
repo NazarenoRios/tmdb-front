@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom"
 
 function PreFooter() {
   return (
@@ -35,9 +36,9 @@ function PreFooter() {
             </span>
           </li>
           <li>
-            <a href="/" className="hover:underline hover:text-white">
+            <Link to="/contact" className="hover:underline hover:text-white">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
