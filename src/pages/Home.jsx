@@ -33,6 +33,8 @@ export default function Home() {
     if (res.status !== 200) {
       setToggleNeedToLogIn(<NeedToLogIn/>)
     } 
+
+    console.log(res)
   
     const { data } = await fetchApi({
       method: 'get',
