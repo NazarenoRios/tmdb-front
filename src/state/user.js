@@ -80,12 +80,12 @@ export const checkLogin = createAsyncThunk("check", async (setToggleNeedToLogIn)
 export const logOut = createAsyncThunk("LOG_OUT",async () => {
   localStorage.clear();
   
-  await fetchApi({
+  const res = await fetchApi({
     method: 'post',
     url: '/api/users/logout',
   });
 
-  return;
+  return res;
 });
 
 export const updateProfile = createAsyncThunk(

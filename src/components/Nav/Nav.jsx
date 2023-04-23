@@ -30,10 +30,11 @@ function Nav() {
   const dispatch = useDispatch();
 
   const handleLogout = function () {
-    dispatch(logOut()).then(() => {
-    success("logged out");
-    navigate("/");
+    dispatch(logOut()).then((res) => {
+      console.log(res)
     })
+    // success("logged out");
+    // navigate("/");
   };
 
   //popup
@@ -148,7 +149,7 @@ function Nav() {
 
         <div className="btn flex dropmenu">
           <LogoutIcon className="dropicons" />
-          <Link to="/"><label onClick={handleLogout}>LOG OUT</label></Link>
+          <label onClick={handleLogout}>LOG OUT</label>
         </div>
       </DropMenu>
     </nav>
