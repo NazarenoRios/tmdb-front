@@ -28,6 +28,8 @@ function Users() {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
 
+    console.log(res)
+
     setUsers(res.data);
     return res.data;
   };
