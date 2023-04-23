@@ -4,9 +4,12 @@ import { useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
 import Card from "../../common/Card/Card";
 import { fetchApi } from "../../config/axiosInstance";
+import LoadingSpinner from "../../common/LoadingSpinner";
 
 export default function FavPage() {
+
   const [movies, setMovies] = useState([]);
+  const [toggleNoMovies, setToggleNoMovies] = useState(<LoadingSpinner/>);
 
   const users = useSelector((state) => state.users);
 
@@ -17,6 +20,8 @@ export default function FavPage() {
         url: `/api/movies/favorites?userId=${users.id}`,
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
+
+      console.log(res)
 
       setMovies(res.data);
     };
