@@ -7,19 +7,8 @@ import LoginNav from "../components/LoginPage/LoginNav";
 import LoginPhotos from "../components/LoginPage/LoginPhotos";
 import LoginStream from "../components/LoginPage/LoginStream";
 import PreFooter from '../common/PreFooter'
-import Home from "./Home";
-import { useSelector } from "react-redux";
 
 function Principal() {
-
-  const user = useSelector((state) => state.users);
-
-  if (user.id) {
-    return (
-      <Home/>
-    )
-  }
-
   return (
     <>
       <Main>
