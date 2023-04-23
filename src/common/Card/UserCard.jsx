@@ -8,8 +8,12 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export default function UserCard({ user }) {
+
+  const [t,i18n] = useTranslation("global");
+
   return (
     <Link to={`/user/${user.id}`}>
       <Center py={20}>
@@ -79,7 +83,7 @@ export default function UserCard({ user }) {
                 fontWeight={800}
                 fontSize={"xl"}
               >
-                Last Activity
+                {t("users.activity")}
               </span>
             </Stack>
             <p

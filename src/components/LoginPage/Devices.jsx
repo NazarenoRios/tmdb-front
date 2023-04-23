@@ -17,13 +17,13 @@ function Devices() {
         <Section>
             <Container>
                 <Title>
-                    <h1>{t("avaible")}</h1>
+                    <h1>{t("principal.avaible")}</h1>
                 </Title>
                 <GridImg>
 
                     <Image>
                         <img src={img1} alt="Computer"/>
-                        <h2>{t("Computer")}</h2>
+                        <h2>{t("principal.Computer")}</h2>
                         <p>Chrome OS <br/> MacOS <br/> WindowsPC</p>
                     </Image>
 
@@ -41,7 +41,7 @@ function Devices() {
 
                     <Image>
                         <img src={img4} alt="mobile"/>
-                        <h2>{t("mobile")}</h2>
+                        <h2>{t("principal.mobile")}</h2>
                         <p>Amazon Fire Tablets <br/> Android Phones & Tablets <br/> iPhone & iPad <br/></p>
                     </Image>
 

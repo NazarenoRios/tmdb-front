@@ -71,6 +71,8 @@
         "edit":"Edita tu perfil",
         "Name":"Nombre",
         "Lastname":"Apellido",
+        "onlypw": "Contraseña",
+        "pwsame":"Las contraseñas deben ser iguales",
         "pw":"Olvidates tu contraseña?",
         "pwconfirm":"Confirmar contraseña",
         "pwchange":"Cambia tu contraseña",

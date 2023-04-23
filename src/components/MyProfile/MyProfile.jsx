@@ -27,8 +27,12 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { fetchApi } from "../../config/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 export default function MyProfile() {
+
+  const [t,i18n] = useTranslation("global");
+
   const name = useInput("name");
   const lastname = useInput("lastname");
 
@@ -202,17 +206,17 @@ export default function MyProfile() {
               className="rounded bg-[#02468a] py-2 px-10 font-semibold hover:bg-[#051e51] mb-5"
               onClick={handleSubmit}
             >
-              Change Image
+              {t("profile.image")}
             </button>
           </div>
 
-          <Heading fontSize={"2xl"}>Edit your profile</Heading>
+          <Heading fontSize={"2xl"}>{t("profile.edit")}</Heading>
           <FormControl id="name">
-            <FormLabel>Name</FormLabel>
+            <FormLabel>{t("profile.Name")}</FormLabel>
             <Input type="text" {...name} />
           </FormControl>
           <FormControl id="lastname">
-            <FormLabel>Lastname</FormLabel>
+            <FormLabel>{t("profile.Lastname")}</FormLabel>
             <Input type="text" {...lastname} />
           </FormControl>
           <Stack spacing={6}>
@@ -226,14 +230,14 @@ export default function MyProfile() {
                 color={"blue.500"}
                 className="text-gray-400 hover:text-white"
               >
-                Forgot password?
+                {t("profile.pw")}
               </Link>
             </Stack>
             <button
               className="w-full rounded bg-[#02468a] py-3 font-semibold hover:bg-[#051e51]"
               type="submit"
             >
-              Confirm
+              {t("profile.Confirm")}
             </button>
           </Stack>
         </Stack>

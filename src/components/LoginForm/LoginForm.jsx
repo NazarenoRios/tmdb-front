@@ -3,8 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { fetchApi } from "../../config/axiosInstance";
 
 import { useForm } from "react-hook-form"
-import { useInput } from "../../hooks/useInput";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { GoogleLogin } from "@react-oauth/google";
 
@@ -30,6 +30,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function LoginForm() {
+
+  const [t,i18n] = useTranslation("global");
   
   const [invalidAccount, setInvalidAccount] = useState("");
   const [showLoading,setShowLoading] = useState(null)
@@ -163,7 +165,7 @@ export default function LoginForm() {
           </a>
         </Nav>
         <br></br>
-        <Home>Home</Home>
+        <Home>{t("login.home")}</Home>
 
         <Container as={SimpleGrid} py={{ base: 10, sm: 20, lg: 32 }}>
           <Stack
@@ -182,7 +184,7 @@ export default function LoginForm() {
                 lineHeight={1.1}
                 fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
               >
-                Login
+                {t("login.Login")}
                 <Text
                   as={"span"}
                   bgGradient="linear(to-r, blue.400,pink.400)"
@@ -192,14 +194,13 @@ export default function LoginForm() {
                 </Text>
               </Heading>
               <Text color={"gray.400"} fontSize={{ base: "sm", sm: "md" }}>
-                Login to access a wide variety of movies and series that you
-                can`t miss!
+              {t("login.login-text")}
               </Text>
             </Stack>
             <Box as={"form"} mt={10}>
               <Stack spacing={4}>
                 <Input
-                  placeholder="firstname@example.com"
+                  placeholder={t("login.email")}
                   id="email"
                   type="email"
                   borderTop={0}
@@ -214,7 +215,7 @@ export default function LoginForm() {
                 />
                 {errors.email?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Email field cant be empty </span>}
                 <Input
-                  placeholder="Password..."
+                  placeholder={t("login.password")}
                   id="password"
                   type="password"
                   borderTop={0}
@@ -243,7 +244,7 @@ export default function LoginForm() {
                   boxShadow: "xl",
                 }}
               >
-                Submit
+                {t("login.submit")}
               </Button>
               <br/>
               <br/> 
@@ -251,13 +252,13 @@ export default function LoginForm() {
             </Box>
 
             <div className="text-[gray] text-center">
-              New to Butterflix?{" "}
+            {t("login.new")}{" "}
               <Link to="/register">
                 <button
                   className="cursor-pointer text-white hover:underline"
                   type="submit"
                 >
-                  Sign up now
+                  {t("login.singup")}
                 </button>
               </Link>
             </div>

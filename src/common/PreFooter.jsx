@@ -1,8 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function PreFooter() {
+
+  const [t,i18n] = useTranslation("global");
+
   return (
     <PFooter className="bg-[transparent]">
       <div className="footer-text">
@@ -14,7 +18,7 @@ function PreFooter() {
           >
             Nazareno Rios
           </a>
-          . All Rights Reserved.
+          . {t("footer.All-Rights-Reserved")}.
         </span>
       </div>
 
@@ -22,22 +26,22 @@ function PreFooter() {
         <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
             <span className="mr-4 hover:underline md:mr-6 hover:text-white">
-              Privacy
+            {t("footer.Privacy")}
             </span>
           </li>
           <li>
             <span className="mr-4 hover:underline md:mr-6 hover:text-white">
-              Terms
+            {t("footer.Terms")}
             </span>
           </li>
           <li>
             <span className="mr-4 hover:underline md:mr-6 hover:text-white">
-              Help
+            {t("footer.Help")}
             </span>
           </li>
           <li>
             <Link to="/contact" className="hover:underline hover:text-white">
-              Contact
+            {t("footer.Contact")}
             </Link>
           </li>
         </ul>

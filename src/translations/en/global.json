@@ -73,6 +73,8 @@
         "edit":"Edit your profile",
         "Name":"Name",
         "Lastname":"Lastname",
+        "onlypw": "Password",
+        "pwsame":"Passwords must be the same",
         "pw":"Forgot password?",
         "pwconfirm":"Confirm Password",
         "pwchange":"Change your password",

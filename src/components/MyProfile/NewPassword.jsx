@@ -4,7 +4,7 @@ import aside from "../../assets/background/aside.mp4"
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
 
 import { useInput } from "../../hooks/useInput";
-import { changePassword, logOut } from "../../state/user";
+import { logOut } from "../../state/user";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useState } from "react";
@@ -22,9 +22,12 @@ import {
 
 import "./Btns2.css"
 import { fetchApi } from "../../config/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 
 export default function NewPassword() {
+
+  const [t,i18n] = useTranslation("global");
 
   const password = useInput("password");
   const confirmPassword = useInput("confirmPassword");
@@ -84,13 +87,13 @@ export default function NewPassword() {
 
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack as={'form'} spacing={4} w={'full'} maxW={'md'} onSubmit={submitHandler} >
-          <Heading fontSize={'2xl'}>Change your password</Heading>
+          <Heading fontSize={'2xl'}>{t("profile.pwchange")}</Heading>
           <FormControl id="name">
-            <FormLabel>Password</FormLabel>
+            <FormLabel>{t("profile.onlpw")}</FormLabel>
             <Input type="password" {...password} />
           </FormControl>
           <FormControl id="lastname">
-            <FormLabel>Confirm Password</FormLabel>
+            <FormLabel>{t("profile.pwconfirm")}</FormLabel>
             <Input type="password" {...confirmPassword} />
           </FormControl>
 
@@ -99,7 +102,7 @@ export default function NewPassword() {
             <ExclamationCircleIcon
               style={{ height: "25px", width: "25px" }}
             />{" "}
-            Passwords must be the same
+            {t("profile.pwsame")}
           </Meesage>
 
           <Stack spacing={6}>
@@ -108,7 +111,7 @@ export default function NewPassword() {
               type="submit"
               onClick={toggleMessage}
             >
-              Confirm
+              {t("profile.Confirm")}
             </button>
           </Stack>
         </Stack>

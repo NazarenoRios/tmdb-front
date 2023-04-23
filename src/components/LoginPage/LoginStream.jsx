@@ -15,14 +15,14 @@ function LoginStream() {
         <Container>
           <TextInfo>
             <h1 className="butterflix-titles">
-            {t("Stream-with-Premier-Access-the")}
+            {t("principal.Stream-with-Premier-Access-the")}
             </h1>
-            <h1 className="butterflix-titles">{t("same-day")}</h1>
+            <h1 className="butterflix-titles">{t("principal.same-day")}</h1>
             <p>
-            {t("coming-may")}
+            {t("principal.coming-may")}
             </p>
             <button type="button" className="btn-effect btn-theme-butterflix">
-                <span>{t("GET-BUNDLE")}</span><i></i>
+                <span>{t("principal.GET-BUNDLE")}</span><i></i>
             </button>
           </TextInfo>
           <ImgInfo>

@@ -4,8 +4,12 @@ import UserPersonalCard from "../../common/Card/UserPersonalCard/UserPersonalCar
 import UserInfoCard from "../../common/Card/UserPersonalCard/UserInfoCard";
 import { fetchApi } from "../../config/axiosInstance";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function UserPage() {
+
+  const [t,i18n] = useTranslation("global");
+
   const params = useLocation();
   const id = params.pathname.split("/user/")[1];
 
@@ -46,7 +50,7 @@ function UserPage() {
       </div>
 
       <div className="flex justify-center">
-        <h2 style={{ fontSize: "30px" }}>Favorite List</h2>
+        <h2 style={{ fontSize: "30px" }}>{t("users.favlist")}</h2>
       </div>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">

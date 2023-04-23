@@ -8,6 +8,7 @@ import { log, success, error } from "../../utils/logs";
 
 import Loading from "../../common/Loading"
 
+import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -51,6 +52,8 @@ const avatars = [
 ];
 
 export default function RegisterForm() {
+
+  const [t,i18n] = useTranslation("global");
 
   const [invalidAccount, setInvalidAccount] = useState("");
 
@@ -118,14 +121,14 @@ export default function RegisterForm() {
           <Heading
             lineHeight={1.1}
             fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}>
-            <Text className='text-white'>Register Now</Text>
+            <Text className='text-white'>{t("register.regnow")}</Text>
             <Text
               as={'span'}
               bgGradient="linear(to-r, blue.400,pink.400)"
               bgClip="text">
               &
             </Text>{' '}
-            <Text className='text-white' >Access to All Our Catalogue</Text>
+            <Text className='text-white' >{t("register.access")}</Text>
           </Heading>
           <Stack direction={'row'} spacing={4} align={'center'}>
             <AvatarGroup>
@@ -177,7 +180,7 @@ export default function RegisterForm() {
                 top: 0,
                 left: 0,
               }}>
-              YOU
+              {t("register.YOU")}
             </Flex>
           </Stack>
         </Stack>
@@ -194,7 +197,7 @@ export default function RegisterForm() {
               className='text-white'
               lineHeight={1.1}
               fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-              Register for Free
+              {t("register.regfree")}
               <Text
                 as={'span'}
                 bgGradient="linear(to-r, blue.400,pink.400)"
@@ -203,13 +206,13 @@ export default function RegisterForm() {
               </Text>
             </Heading>
             <Text color={'gray.400'} fontSize={{ base: 'sm', sm: 'md' }}>
-              After registering, you will be able to access a wide variety of movies and series that you can`t miss!
+            {t("register.after")}
             </Text>
           </Stack>
           <Box as={'form'} mt={10}>
             <Stack spacing={4}>
               <Input
-                placeholder="Firstname"
+                placeholder={t("register.Firstname")}
                 id="name"
                 type="text"
                 borderTop={0}
@@ -223,7 +226,7 @@ export default function RegisterForm() {
               />
               {errors.name?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Name field cant be empty </span>}
               <Input
-                placeholder="Lastname"
+                placeholder={t("register.Lastname")}
                 id="lastname"
                 type="text"
                 borderTop={0}
@@ -237,7 +240,7 @@ export default function RegisterForm() {
               />
               {errors.lastname?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Lastname field cant be empty </span>}
               <Input
-                placeholder="firstname@example.com"
+                placeholder={t("register.Email")}
                 id="email"
                 type="email"
                 borderTop={0}
@@ -251,7 +254,7 @@ export default function RegisterForm() {
               />
               {errors.email?.type === "required" && <span className="text-red-500 ml-8 sm:ml-0">* Email field cant be empty </span>}
               <Input
-                placeholder="Password..."
+                placeholder={t("register.Password")}
                 id="password"
                 type="password"
                 borderTop={0}
@@ -277,7 +280,7 @@ export default function RegisterForm() {
                 bgGradient: 'linear(to-r, blue.400,pink.400)',
                 boxShadow: 'xl',
               }}>
-              Submit
+              {t("register.Submit")}
             </Button>
           </Box>
         </Stack>

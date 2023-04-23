@@ -4,10 +4,14 @@ import UserCard from "../../common/Card/UserCard";
 import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
 import { fetchApi } from "../../config/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 function Users() {
+
+  const [t,i18n] = useTranslation("global");
+
   const [users, setUsers] = useState([]);
-  const [placeholder, setPlaceholder] = useState("Search Users...");
+  const [placeholder, setPlaceholder] = useState(`${t("users.search")}`);
 
   const search = useInput();
 

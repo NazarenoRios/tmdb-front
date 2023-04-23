@@ -6,8 +6,12 @@ import { MovieBannerRequest } from "../../state/movies";
 
 import "./Banner.css";
 import { fetchApi } from "../../config/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 function Banner() {
+
+  const [t,i18n] = useTranslation("global");
+
   const get_url = "https://api.themoviedb.org/3";
 
   const [checkFav, setCheckFav] = useState(false);
@@ -84,11 +88,11 @@ function Banner() {
 
         <div className="banner_buttons flex">
           <Link to={`/movie/${movie.id}`}>
-            <button className="banner__button">Play</button>
+            <button className="banner__button">{t("home-banner.Play")}</button>
           </Link>
 
           <Link to="/favorites">
-            <button className="banner__button">My List</button>
+            <button className="banner__button">{t("home-banner.list")}</button>
           </Link>
 
           <div className="rounded-full border-2 border-white flex items-center justify-center w-11 h-11 cursor-pointer bg-black/60 hover:bg-[#c6c6c6] hover:text-[#191919]">

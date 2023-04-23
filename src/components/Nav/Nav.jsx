@@ -16,11 +16,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../state/user";
 
 import { success } from "../../utils/logs";
-import { getUser } from "../../state/updatedUser";
 import { fetchApi } from "../../config/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 
 function Nav() {
+
+  const [t,i18n] = useTranslation("global");
 
   const [updatedUser,setUser] = useState({})
 
@@ -97,7 +99,7 @@ function Nav() {
             <li className="">
               <div className="btn">
                 <img src={homeBtn} alt="" />
-                <label>HOME</label>
+                <label>{t("home-nav.home")}</label>
               </div>
             </li>
           </Link>
@@ -106,7 +108,7 @@ function Nav() {
             <li className="">
               <div className="btn">
                 <img src={searchBtn} alt="" />
-                <label>SEARCH</label>
+                <label>{t("home-nav.search")}</label>
               </div>
             </li>
           </Link>
@@ -115,7 +117,7 @@ function Nav() {
             <li className="">
               <div className="btn">
                 <img src={chatBtn} alt="" />
-                <label>CONTACT</label>
+                <label>{t("home-nav.contact")}</label>
               </div>
             </li>
           </Link>
@@ -124,7 +126,7 @@ function Nav() {
             <li className="">
               <div className="btn">
                 <img src={users} alt="" />
-                <label>USERS</label>
+                <label>{t("home-nav.users")}</label>
               </div>
             </li>
           </Link>
@@ -133,7 +135,7 @@ function Nav() {
             <li className="">
               <div className="btn">
                 <img src={myListBtn} alt="" />
-                <label>MY LIST</label>
+                <label>{t("home-nav.list")}</label>
               </div>
             </li>
           </Link>
@@ -145,12 +147,12 @@ function Nav() {
       <DropMenu activeState={popUp} >
         <div className="btn flex dropmenu">
         <UserIcon className="dropicons" />
-          <Link to="/myprofile"><label>PROFILE</label></Link>
+          <Link to="/myprofile"><label>{t("home-nav.profile")}</label></Link>
         </div>
 
         <div className="btn flex dropmenu">
           <LogoutIcon className="dropicons" />
-          <label onClick={handleLogout}>LOG OUT</label>
+          <label onClick={handleLogout}>{t("home-nav.logout")}</label>
         </div>
       </DropMenu>
     </nav>

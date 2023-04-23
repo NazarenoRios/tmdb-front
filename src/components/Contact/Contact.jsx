@@ -15,8 +15,12 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import contactImg from "../../assets/contact/simpsons.gif";
+import { useTranslation } from "react-i18next";
 
 export default function Contact() {
+
+  const [t,i18n] = useTranslation("global");
+
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -105,8 +109,7 @@ export default function Contact() {
 
             <br />
             <Text textAlign={"center"} color="white" px={3}>
-              No dudes en contactarme, seguramente este codeando pero tambien
-              leyendo emails 😁
+              {t("contact.message")} 😁
             </Text>
             <br />
 

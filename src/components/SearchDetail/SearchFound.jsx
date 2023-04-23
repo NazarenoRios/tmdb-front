@@ -6,8 +6,11 @@ import { useInput } from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { MovieSearchRequest, MovieSearchRequest2, MovieSetSearch, MovieSetSearch2, SerieSetSearch, SerieSetSearch2 } from "../../state/movies";
 import CategoryCard2 from "../../common/Card/CategoryCard2";
+import { useTranslation } from "react-i18next";
 
 function SearchFound() {
+
+  const [t,i18n] = useTranslation("global");
   
   const [movies, setMovies] = useState([]);
   const [movies2, setMovies2] = useState([]);
@@ -46,7 +49,7 @@ function SearchFound() {
         <Input
           autocorrect="off"
           maxlength="50"
-          placeholder="What are you looking for?"
+          placeholder={t("search.search-input")}
           autocapitalize="sentences"
           onFocus={details}
           onKeyDown={handleSearch}

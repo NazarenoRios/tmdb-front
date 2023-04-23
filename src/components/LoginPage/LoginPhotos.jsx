@@ -28,8 +28,8 @@ function LoginPhotos() {
         <Section>
             <Container>
                 <Title>
-                    <h1>{t("exclusive")}</h1>
-                    <p>{t("watch")}</p>
+                    <h1>{t("principal.exclusive")}</h1>
+                    <p>{t("principal.watch")}</p>
                 </Title>
                 <GridImg>
                     {

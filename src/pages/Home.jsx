@@ -12,8 +12,11 @@ import { checkLogin } from "../state/user";
 import FavoriteRow from "../components/FavoriteRow/FavoriteRow.tsx";
 
 import LoadingSpinner from "../common/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+
+  const [t,i18n] = useTranslation("global");
 
   const [toggleNeedToLogIn, setToggleNeedToLogIn] = useState(<LoadingSpinner/>);
 
@@ -30,17 +33,17 @@ export default function Home() {
         <Nav />
         <Banner />
         <Categories />
-        <FavoriteRow title="My Favorites" />
-        <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
-        <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
-        <Row title="Western" fetchUrl={requests.fetchWestern}/>
-        <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
-        <Row title="Animation" fetchUrl={requests.fetchAnimation} />
-        <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
-        <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
-        <Row title="Sci-Fi" fetchUrl={requests.fetchScifi} />
-        <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
-        <Row title="Documentaries" fetchUrl={requests.fetchDocumantaries} />
+        <FavoriteRow title={t("home.fav")} />
+        <Row title={t("home.trending")} fetchUrl={requests.fetchTrending} />
+        <Row title={t("home.top")} fetchUrl={requests.fetchTopRated} />
+        <Row title={t("home.western")} fetchUrl={requests.fetchWestern}/>
+        <Row title={t("home.action")} fetchUrl={requests.fetchActionMovies} />
+        <Row title={t("home.animation")} fetchUrl={requests.fetchAnimation} />
+        <Row title={t("home.horror")} fetchUrl={requests.fetchHorrorMovies} />
+        <Row title={t("home.romance")} fetchUrl={requests.fetchRomanceMovies} />
+        <Row title={t("home.scifi")} fetchUrl={requests.fetchScifi} />
+        <Row title={t("home.comedy")} fetchUrl={requests.fetchComedyMovies} />
+        <Row title={t("home.documentaries")} fetchUrl={requests.fetchDocumantaries} />
         <PreFooter/>
         <Footer/>
       </>
