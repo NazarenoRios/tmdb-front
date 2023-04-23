@@ -6,7 +6,8 @@ const Home = lazy(() => import("./pages/Home"))
 const MoviePage = lazy(() => import("./pages/MoviePage"))
 const TvPage = lazy(() => import("./pages/TvPage"))
 const SearchDetail = lazy(() => import("./pages/SearchDetail"))
-const Principal = lazy(() => import("./pages/Principal"))
+import Principal from "./pages/Principal"
+// const Principal = lazy(() => import("./pages/Principal"))
 const LoginForm = lazy(() => import("./pages/LoginForm"))
 const RegisterForm = lazy(() => import("./pages/RegisterForm"))
 const Favorites = lazy(() => import("./pages/Favorites"))
@@ -25,7 +26,7 @@ function App() {
 
   return (
       <Routes>
-        <Route path="/" element={<Suspense fallback={<LoadingSpinner/>} ><Principal /></Suspense>}/>
+        <Route path="/" element={<Principal />}/>
         <Route path="/home" element={<Suspense fallback={<LoadingSpinner/>} ><Home /></Suspense>} />
         <Route path="/tv/:id" element={<Suspense fallback={<LoadingSpinner/>} ><TvPage /></Suspense>} />
         <Route path="/movie/:id" element={<Suspense fallback={<LoadingSpinner/>} ><MoviePage /></Suspense>} />
