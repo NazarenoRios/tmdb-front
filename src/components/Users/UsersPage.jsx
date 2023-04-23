@@ -71,7 +71,7 @@ function Users() {
           onFocus={togglePlaceholder}
           onChange={(e) => setSearch(e.target.value)}
           // onKeyDown={handleSearch}
-          // {...search}
+          {...search}
         />
       </Container>
 
@@ -81,16 +81,6 @@ function Users() {
           return search.toLowerCase() === ""
           ? user
           : user.name.toLowerCase().includes(search);
-        })
-        .filter((user) => {
-          return search.toLowerCase() === ""
-          ? user
-          : user.lastname.toLowerCase().includes(search);
-        })
-        .filter((user) => {
-          return search.toLowerCase() === ""
-          ? user
-          : user.email.toLowerCase().includes(search);
         })
         .map((user, i) => (
           <UserCard user={user} key={i} />
