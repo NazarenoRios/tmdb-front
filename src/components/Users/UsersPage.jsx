@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { SimpleGrid } from "@chakra-ui/react";
 import UserCard from "../../common/Card/UserCard";
 import styled from "styled-components";
-import { useInput } from "../../hooks/useInput";
 import { fetchApi } from "../../config/axiosInstance";
 import { useTranslation } from "react-i18next";
 
@@ -13,33 +12,38 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [placeholder, setPlaceholder] = useState(`${t("users.search")}`);
 
-  const search = useInput();
-
   //input
   const togglePlaceholder = function () {
     setPlaceholder("");
   };
 
   //search users
-  const fetchSearch = async () => {
-    const res = await fetchApi({
-      method: "get",
-      url: `/api/users/search?name=${search.value}`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    });
 
-    console.log(res)
+  const [search,setSearch] = useState("");
 
-    setUsers(res.data);
-    return res.data;
-  };
+  //search users
 
-  const handleSearch = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      fetchSearch();
-    }
-  };
+  //  const search = useInput();
+
+  // const fetchSearch = async () => {
+  //   const res = await fetchApi({
+  //     method: "get",
+  //     url: `/api/users/search?name=${search.value}`,
+  //     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  //   });
+
+  //   console.log(res)
+
+  //   setUsers(res.data);
+  //   return res.data;
+  // };
+
+  // const handleSearch = (e) => {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //     fetchSearch();
+  //   }
+  // };
 
   //Users
   useEffect(() => {
@@ -65,13 +69,20 @@ function Users() {
           placeholder={placeholder}
           autocapitalize="sentences"
           onFocus={togglePlaceholder}
-          onKeyDown={handleSearch}
+          onChange={(e) => setSearch(e.target.value)}
+          // onKeyDown={handleSearch}
           {...search}
         />
       </Container>
 
       <SimpleGrid minChildWidth="300px" spacing="30px">
-        {users.map((user, i) => (
+        {users
+        .filter((user) => {
+          return search.toLowerCase() === ""
+          ? user
+          : user.name.toLowerCase().includes(search);
+        })
+        .map((user, i) => (
           <UserCard user={user} key={i} />
         ))}
       </SimpleGrid>
