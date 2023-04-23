@@ -31,10 +31,11 @@ function Nav() {
 
   const handleLogout = function () {
     dispatch(logOut()).then((res) => {
-      console.log(res)
+      if (res.payload.status === 204) {
+        success("logged out");
+        navigate("/");
+      }
     })
-    // success("logged out");
-    // navigate("/");
   };
 
   //popup
