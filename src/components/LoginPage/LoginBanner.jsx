@@ -8,8 +8,12 @@ import logo from "../../assets/logo/butterLogo3.png";
 import background from "../../assets/Login2/banner.jpeg";
 import backgroundMD from "../../assets/Login2/bannerMD.jpeg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const LoginBanner = () => {
+
+  const [t,i18n] = useTranslation("global");
+
   return (
     <>
       <Background>
@@ -18,17 +22,17 @@ const LoginBanner = () => {
             <Image src={logo} alt="logo/img" className="img butter-logo" />
             <Link to='register'>
               <button type="button" className="btn-effect">
-                <span>free Register Here</span>
+                <span>{t("principal.free-Register-Here")}</span>
                 <i></i>
               </button>
             </Link>
-            <h4>Stream Now: Terms Apply</h4>
+            <h4>{t("principal.Stream-Now-Terms-Apply")}</h4>
             <Image src={logo2} alt="logo/img" className="img" />
             <button type="button" className="links">
-              Sing Up for Butterflix Only
+            {t("principal.Sign-Up-for-Butterflix-Only")}
             </button>
             <button type="button" className="links text-muted">
-              $4.99/month or $49.99/year
+            {t("principal.month-price")}
             </button>
           </Content>
         </Container>

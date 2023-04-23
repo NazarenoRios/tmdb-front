@@ -3,25 +3,26 @@ import React from "react";
 import styled from "styled-components";
 
 import imgStream from "../../assets/Login2/stream.png";
+import { useTranslation } from "react-i18next";
 
 function LoginStream() {
+
+  const [t,i18n] = useTranslation("global");
+
   return (
     <>
       <Section>
         <Container>
           <TextInfo>
             <h1 className="butterflix-titles">
-              Stream with Premier Access the
+            {t("Stream-with-Premier-Access-the")}
             </h1>
-            <h1 className="butterflix-titles">same day it's in theaters</h1>
+            <h1 className="butterflix-titles">{t("same-day")}</h1>
             <p>
-              Comming May 28. Get Premier Access to Cruella for $19.99 with a
-              Butterflix subscription, and watch as many times as you like
-              before it's available to all Butterflix subscribers at a later
-              date
+            {t("coming-may")}
             </p>
             <button type="button" className="btn-effect btn-theme-butterflix">
-                <span>GET THE BUNDLE HERE</span><i></i>
+                <span>{t("GET-BUNDLE")}</span><i></i>
             </button>
           </TextInfo>
           <ImgInfo>

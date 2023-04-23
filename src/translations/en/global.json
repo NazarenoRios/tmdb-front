@@ -1,0 +1,103 @@
+{
+    "nav": {
+        "English": "English",
+        "Spanish": "Spanish",
+        "LogIn": "LOG IN",
+        "LogOut": "LOG OUT"
+    },
+    "principal": {
+        "free-Register-Here": "free Register Here",
+        "Stream-Now-Terms-Apply": "Stream Now: Terms Apply",
+        "Sign-Up-for-Butterflix-Only":"Sign Up for Butterflix Only",
+        "month-price":"$4.99/month or $49.99/year",
+        "Stream-with-Premier-Access-the":"Stream with Premier Access the",
+        "same-day":"same day it's in theaters",
+        "coming-may":"Comming May 28. Get Premier Access to Cruella for $19.99 with a Butterflix subscription, and watch as many times as you like before it's available to all Butterflix subscribers at a later date",
+        "GET-BUNDLE":"GET THE BUNDLE HERE",
+        "exclusive":"Exclusive Butterflix Originals",
+        "watch":"Watch never-before-seen movies, series, shorts and more from the world's greatest storytellers - only available on Disney+",
+        "avaible":"Available on your favorite devices",
+        "Computer":"Computer",
+        "mobile":"mobile"
+    },
+    "footer": {
+        "All-Rights-Reserved": "All Rights Reserved",
+        "Privacy": "Privacy",
+        "Terms": "Terms",
+        "Help": "Help",
+        "Contact": "Contact"
+    },
+    "home": {
+        "fav":"My Favorites",
+        "trending":"Trending Now",
+        "top":"Top Rated",
+        "western":"Western",
+        "action":"Action Movies",
+        "animation":"Animation",
+        "horror":"Horror Movies",
+        "romance":"Romance Movies",
+        "scifi":"Sci-Fi",
+        "comedy":"Comedy Moviesi",
+        "documentaries":"Documentaries"
+    },
+    "home-nav": {
+        "home":"HOME",
+        "search":"SEARCH",
+        "contact":"CONTACT",
+        "users":"USERS",
+        "list":"MY LIST",
+        "profile": "PROFILE",
+        "logout": "LOG OUT"
+    },
+    "home-banner": {
+        "Play":"Play",
+        "list":"My List"
+    },
+    "search": {
+        "search-input":"What are you looking for?"
+    },
+    "contact": {
+        "message":"Don't hesitate to contact me, I'm probably coding but also reading emails"
+    },
+    "users": {
+        "search": "Search Users...",
+        "activity": "Last Activity",
+        "favlist":"Favorite List"
+    },
+    "movieDetails":{
+        "play": "Play",
+        "Traler": "Trailer"
+    },
+    "profile":{
+        "image":"Change Image",
+        "edit":"Edit your profile",
+        "Name":"Name",
+        "Lastname":"Lastname",
+        "pw":"Forgot password?",
+        "pwconfirm":"Confirm Password",
+        "pwchange":"Change your password",
+        "Confirm":"Confirm"
+    },
+    "login": {
+        "Home":"Home",
+        "Login":"Login",
+        "login-text":"Login to access a wide variety of movies and series that you can`t miss!",
+        "email":"firstname@example.com",
+        "password":"Password...",
+        "new":"New to Butterflix?",
+        "singup":"Sign up now",
+        "submit":"Submit"
+    },
+    "register": {
+        "regnow":"Register Now",
+        "access":"Access to All Our Catalogue",
+        "YOU":"YOU",
+        "regfree":"Register for Free",
+        "after":"After registering, you will be able to access a wide variety of movies and series that you can`t miss!",
+        "Firstname":"Firstname",
+        "Lastname":"Lastname",
+        "Email":"firstname@example.com",
+        "Password":"Password...",
+        "Submit": "Submit"
+    }
+}

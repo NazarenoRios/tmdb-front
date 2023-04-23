@@ -5,21 +5,25 @@ import img1 from '../../assets/Login2/Devices/Computer.png';
 import img2 from '../../assets/Login2/Devices/TV.png';
 import img3 from '../../assets/Login2/Devices/XBOX.png';
 import img4 from '../../assets/Login2/Devices/mobile.png';
+import { useTranslation } from 'react-i18next';
 
 
 function Devices() {
+
+    const [t,i18n] = useTranslation("global");
+
   return (
     <>
         <Section>
             <Container>
                 <Title>
-                    <h1>Available on your favorite devices</h1>
+                    <h1>{t("avaible")}</h1>
                 </Title>
                 <GridImg>
 
                     <Image>
                         <img src={img1} alt="Computer"/>
-                        <h2>Computer</h2>
+                        <h2>{t("Computer")}</h2>
                         <p>Chrome OS <br/> MacOS <br/> WindowsPC</p>
                     </Image>
 
@@ -37,7 +41,7 @@ function Devices() {
 
                     <Image>
                         <img src={img4} alt="mobile"/>
-                        <h2>mobile</h2>
+                        <h2>{t("mobile")}</h2>
                         <p>Amazon Fire Tablets <br/> Android Phones & Tablets <br/> iPhone & iPad <br/></p>
                     </Image>
 
@@ -128,38 +132,3 @@ const Image = styled.div`
 `;
 
 export default Devices
-
-
-// function Devices() {
-//     const DEVICES = [
-//         {imgSrc: img1, title: "Computer", description: ['Chrome', <br/> ,'OSMacOS', <br/> ,'WindowsPC']},
-//         {imgSrc: img2, title: "TV", description: ['Amazon', <br/> ,'Fire TV', <br/> , 'Android TV', <br/> ,'Apple TV', <br/> ,'Chromecast', <br/> ,'LG TV', <br/> ,'Roku', <br/> ,'Samsung']},
-//         {imgSrc: img3, title: "XBOX", description: ['PS4', <br/> ,'PS5', <br/> ,'Xbox One', <br/> , 'Xbox Series X' , <br/> , 'Xbox Series S']},
-//         {imgSrc: img4, title: "mobile", description: ['Amazon Fire Tablets', <br/> ,'Android Phones & Tablets', <br/> ,'iPhone & iPad']},
-//     ]
-
-
-//   return (
-//     <>
-//         <Section>
-//             <Container>
-//                 <Title>
-//                     <h1>Available on your favorite devices</h1>
-//                 </Title>
-//                 <GridImg>
-//                     {
-//                         DEVICES.map((img,i) =>(
-//                             <Image key={i}>
-//                                 <img src={img.imgSrc} alt={img.title}/>
-//                                 <h2>{img.title}</h2>
-//                                 <p>{img.description}</p>
-//                             </Image>
-//                         ))
-//                     }
-//                 </GridImg>
-//             </Container>
-//         </Section>
-//     </>
-//   )
-// }
-

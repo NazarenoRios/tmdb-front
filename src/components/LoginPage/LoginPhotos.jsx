@@ -11,6 +11,7 @@ import img6 from "../../assets/Login2/loginPhotos/6.jpeg";
 import img7 from "../../assets/Login2/loginPhotos/7.jpeg";
 import img8 from "../../assets/Login2/loginPhotos/8.jpeg";
 import img9 from "../../assets/Login2/loginPhotos/9.jpeg";
+import { useTranslation } from 'react-i18next';
 
 function LoginPhotos() {
 
@@ -20,14 +21,15 @@ function LoginPhotos() {
         {imgSrc: img7},{imgSrc: img8},{imgSrc: img9},
     ]
 
+    const [t,i18n] = useTranslation("global");
 
   return (
     <>
         <Section>
             <Container>
                 <Title>
-                    <h1>Exclusive Butterflix Originals</h1>
-                    <p>Watch never-before-seen movies, series, shorts and more from the world's greatest storytellers - only available on Disney+</p>
+                    <h1>{t("exclusive")}</h1>
+                    <p>{t("watch")}</p>
                 </Title>
                 <GridImg>
                     {
