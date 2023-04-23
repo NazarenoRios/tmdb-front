@@ -15,9 +15,7 @@ function Favorites() {
     dispatch(checkLogin());
   }, []);
 
-  const token = localStorage.getItem("token")
-
-  if (token) {
+  if (user.id) {
     return (
       <>
         <Nav />
