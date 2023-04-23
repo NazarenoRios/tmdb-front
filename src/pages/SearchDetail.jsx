@@ -31,7 +31,9 @@ function SearchDetail() {
   }
 
   return (
-    {toggleNeedToLogIn}
+    <>
+      {toggleNeedToLogIn}
+    </>
   );
 }
 

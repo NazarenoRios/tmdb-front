@@ -39,5 +39,9 @@ export default function Pixar() {
     );
   }
 
-  return { toggleNeedToLogIn };
+  return (
+    <>
+      {toggleNeedToLogIn}
+    </>
+  );
 }

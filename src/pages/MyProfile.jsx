@@ -27,7 +27,9 @@ function MyProfile() {
   }
 
   return (
-    {toggleNeedToLogIn}
+    <>
+      {toggleNeedToLogIn}
+    </>
   );
 }
 

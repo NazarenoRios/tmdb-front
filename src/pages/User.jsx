@@ -27,7 +27,9 @@ function User() {
   }
 
   return (
-    {toggleNeedToLogIn}
+    <>
+      {toggleNeedToLogIn}
+    </>
   );
 }
 

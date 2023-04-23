@@ -27,7 +27,9 @@ function ChangePassword() {
   }
 
   return (
-    {toggleNeedToLogIn}
+    <>
+      {toggleNeedToLogIn}
+    </>
   );
 }
 

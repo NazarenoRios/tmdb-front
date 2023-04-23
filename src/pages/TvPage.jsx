@@ -27,8 +27,10 @@ function TvPage() {
     }
 
     return (
-      {toggleNeedToLogIn}
-    )
+      <>
+        {toggleNeedToLogIn}
+      </>
+    );
 }
 
 export default TvPage;

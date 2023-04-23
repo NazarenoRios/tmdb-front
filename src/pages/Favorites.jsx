@@ -27,7 +27,9 @@ function Favorites() {
   }
 
   return (
-    {toggleNeedToLogIn}
+    <>
+      {toggleNeedToLogIn}
+    </>
   );
 }
 

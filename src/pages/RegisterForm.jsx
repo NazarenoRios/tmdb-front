@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
 import RegisterNav from "../components/RegisterForm/RegisterNav";
-import { useDispatch, useSelector } from "react-redux";
 import Home from "./Home";
-import { checkLogin } from "../state/user";
 
 function RegisterF() {
 
-  const user = useSelector(state => state.users)
-  const dispatch = useDispatch()
+  const token = localStorage.getItem("token")
 
-  useEffect(() => {
-    dispatch(checkLogin())
-  }, []);
-
-  if (user.id) {
+  if (token) {
     return <Home />;
   }
 

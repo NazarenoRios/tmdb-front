@@ -27,8 +27,10 @@ function MoviePage() {
     }
 
     return (
-      {toggleNeedToLogIn}
-    )
+      <>
+        {toggleNeedToLogIn}
+      </>
+    );
 }
 
 export default MoviePage;

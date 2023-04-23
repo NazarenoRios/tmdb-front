@@ -39,5 +39,9 @@ export default function Marvel() {
     );
   }
 
-  return { toggleNeedToLogIn };
+  return (
+    <>
+      {toggleNeedToLogIn}
+    </>
+  );
 }

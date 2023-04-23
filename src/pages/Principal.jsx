@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Footer from "../common/Footer";
 import Devices from "../components/LoginPage/Devices";
@@ -8,19 +8,12 @@ import LoginPhotos from "../components/LoginPage/LoginPhotos";
 import LoginStream from "../components/LoginPage/LoginStream";
 import PreFooter from '../common/PreFooter'
 import Home from "./Home";
-import { useDispatch, useSelector } from "react-redux";
-import { checkLogin } from "../state/user";
 
 function Principal() {
 
-  const user = useSelector(state => state.users)
-  const dispatch = useDispatch()
+  const token = localStorage.getItem("token")
 
-  useEffect(() => {
-    dispatch(checkLogin())
-  }, []);
-
-  if (user.id) {
+  if (token) {
     return (
       <Home/>
     )

@@ -39,5 +39,9 @@ export default function NatGeo() {
     );
   }
 
-  return { toggleNeedToLogIn };
+  return (
+    <>
+      {toggleNeedToLogIn}
+    </>
+  );
 }

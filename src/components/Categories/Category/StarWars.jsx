@@ -39,5 +39,9 @@ export default function StarWars() {
     );
   }
 
-  return { toggleNeedToLogIn };
+  return (
+    <>
+      {toggleNeedToLogIn}
+    </>
+  );
 }
