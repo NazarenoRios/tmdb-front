@@ -8,6 +8,7 @@ import LoginPhotos from "../components/LoginPage/LoginPhotos";
 import LoginStream from "../components/LoginPage/LoginStream";
 import PreFooter from '../common/PreFooter'
 import Home from "./Home";
+import { useSelector } from "react-redux";
 
 function Principal() {
 
