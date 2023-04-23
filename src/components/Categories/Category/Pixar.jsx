@@ -5,6 +5,7 @@ import Nav from "../../Nav/Nav";
 import CategoryCard from "../../../common/Card/CategoryCard";
 import { CategoryPixarRequest } from "../../../state/categories";
 import LoadingSpinner from "../../../common/LoadingSpinner";
+import { checkLogin } from "../../../state/user";
 
 export default function Pixar() {
   const get_url = "https://api.themoviedb.org/3";
