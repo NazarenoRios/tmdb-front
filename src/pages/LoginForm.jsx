@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "../components/LoginForm/LoginForm";
 import Home from "./Home";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkLogin } from "../state/user";
 
 function LoginF() {
-  const user = useSelector((state) => state.users);
+
+  const user = useSelector(state => state.users)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(checkLogin())
+  }, []);
 
   if (user.id) {
     return <Home />;

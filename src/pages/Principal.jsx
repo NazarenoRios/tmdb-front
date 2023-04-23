@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../common/Footer";
 import Devices from "../components/LoginPage/Devices";
@@ -7,8 +7,25 @@ import LoginNav from "../components/LoginPage/LoginNav";
 import LoginPhotos from "../components/LoginPage/LoginPhotos";
 import LoginStream from "../components/LoginPage/LoginStream";
 import PreFooter from '../common/PreFooter'
+import Home from "./Home";
+import { useDispatch, useSelector } from "react-redux";
+import { checkLogin } from "../state/user";
 
 function Principal() {
+
+  const user = useSelector(state => state.users)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(checkLogin())
+  }, []);
+
+  if (user.id) {
+    return (
+      <Home/>
+    )
+  }
+
   return (
     <>
       <Main>
