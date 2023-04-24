@@ -23,7 +23,7 @@ export const MovieSearchRequest = createAsyncThunk("MOVIE_SEARCH", ({get_url, se
 })
 
 export const MovieSearchRequest2 = createAsyncThunk("MOVIE_SEARCH2", ({get_url, setMovies2}) => {
-    return axios.get(`${get_url}${requests.fetchTrending}`)
+    return axios.get(`${get_url}${requests.fetchActionMovies}`)
       .then(res => setMovies2(res.data.results))
 })
 
