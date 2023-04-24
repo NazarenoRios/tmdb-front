@@ -75,6 +75,8 @@ function MovieDetail() {
     setCheckFav(!checkFav);
     fetchDeleteFavorite();
   };
+
+  console.log(movie)
   
   return (
     <div className="relative">
